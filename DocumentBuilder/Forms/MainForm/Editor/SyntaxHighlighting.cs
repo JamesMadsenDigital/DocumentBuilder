@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Runtime.CompilerServices;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using DocumentBuilder.Logs;
 
 namespace DocumentBuilder.Forms.MainForm
 {
@@ -42,102 +43,86 @@ namespace DocumentBuilder.Forms.MainForm
                 return;
             }
             else
+            {
                 ChangeLineColor(textBox, currentLineIndex, Color.Black);
-
-            // Color brackets and parentheses.
-            Regex closures = new Regex("(\\(\\d+\\))");
-
-            MatchCollection closureMatches = closures.Matches(currentLine);
-
-            foreach(Match closure in closureMatches)
-            {
-                int charIndex = firstCharIndex + closure.Index;
-                textBox.Select(charIndex, 1);
-                textBox.SelectionColor = Color.LightGray;
             }
 
-            // Color numbers between parentheses and brackets
-            Regex closureNumbers = new Regex(@"");
+            // Capture all text between square brackets.
+            Regex components = new Regex("\\[(.*?)\\]");
 
-            MatchCollection closureNumberMatches = closureNumbers.Matches(currentLine);
+            MatchCollection componentMatches = components.Matches(currentLine);
 
-            foreach(Match closureNumber in closureNumberMatches)
+            foreach(Match componentMatch in componentMatches)
             {
-                int charIndex = firstCharIndex + closureNumber.Index;
+                // Start index of the component in the textbox.
+                int componentIndex = firstCharIndex + componentMatch.Index;
 
-                textBox.Select(charIndex, closureNumber.Value.Length);
-                textBox.SelectionColor = Color.Purple;
+                string component = componentMatch.Value;
 
+                // Match [ ] ( ) =.
+                Regex closures = new Regex(@"\[|\]|\(|\)|=");
+
+                foreach(Match closureMatch in closures.Matches(component))
+                {
+                    LogManager.LogDebugMessage($"closure detected: {closureMatch.Value}");
+
+                    // Start index of the closure in the textbox.
+                    int closureIndex = componentIndex + closureMatch.Index;
+
+                    textBox.Select(closureIndex, 1);
+
+                    textBox.SelectionColor = Color.LightGray;
+                }
+
+                // Match all word characters.
+                Regex tokens = new Regex(@"[a-zA-Z]*");
+
+                foreach(Match tokenMatch in tokens.Matches(component))
+                {
+                    string token = tokenMatch.Value;
+
+                    int tokenIndex = componentIndex + tokenMatch.Index;
+
+                    KeywordGroup keywordGroup = KeyWords.KeywordMatch(token);
+
+                    Color tokenColor = Color.Red;
+
+                    if (keywordGroup != null)
+                        tokenColor = keywordGroup.keywordColor;
+
+                    textBox.Select(tokenIndex, token.Length);
+                    textBox.SelectionColor = tokenColor;
+                }
+
+                // Match all numeric characters.
+                Regex numericChars = new Regex("[0-9]");
+
+                // Tabs offset the color index on numbers for some reason.
+                int tabCount = currentLine.Count(ch => ch == '\t');
+
+                foreach(Match numericMatch in numericChars.Matches(currentLine))
+                {
+                    int numericIndex = componentIndex + numericMatch.Index;
+
+                    textBox.Select(numericIndex - tabCount, 1);
+                    textBox.SelectionColor = Color.Purple;
+                }
             }
-
-            // Color keywords.
-            Regex keywords = new Regex(@"\w*");
-
-            MatchCollection keywordMatches = keywords.Matches(currentLine);
-
-            foreach(Match keyword in keywordMatches)
-            {
-                int charIndex = firstCharIndex + keyword.Index;
-
-                KeywordGroup groupMatch = KeyWords.KeywordMatch(keyword.Value);
-
-                if (groupMatch == null)
-                    continue;
-
-                textBox.Select(charIndex, keyword.Value.Length);
-                textBox.SelectionColor = groupMatch.keywordColor;
-            }
-
-
-
 
             // Reset selection and color.
             textBox.Select(cursorPosition, 0);
             textBox.SelectionColor = Color.Black;
-
-            /*
-          int selectionStart = textBox.SelectionStart;
-          int selectionLength = textBox.SelectionLength;
-
-          // Split line into tokens.
-          Regex r = new Regex("([ \\t{}();])");
-
-          string[] tokens = r.Split(currentLine);
-
-
-
-
-
-
-          
-          foreach(string token in tokens)
-          {
-              textBox.SelectionStart = index;
-              textBox.SelectionLength = token.Length;
-              textBox.SelectionColor = Color.Black;
-
-              // Check if token is keyword.
-              KeywordGroup tokenMatch = KeyWords.KeywordMatch(token);
-
-              if (tokenMatch == null)
-                  continue;
-
-              // Set color of keyword.
-              textBox.SelectionColor = tokenMatch.keywordColor;
-          }
-
-          // Restore previous selection.
-          textBox.SelectionStart = selectionStart;
-          textBox.SelectionLength = selectionLength;
-          */
         }
 
         /// <summary>
-        /// Returns true if a line is a comment.
+        /// Returns true if a line is a comment (Marked with // at start of line).
         /// </summary>
         private static bool IsComment(string line)
         {
-            return line.StartsWith("//");
+            // Remove leading and trailing whitespaces.
+            string trimmed = line.Trim();
+
+            return trimmed.StartsWith("//");
         }
 
         /// <summary>
@@ -243,8 +228,6 @@ namespace DocumentBuilder.Forms.MainForm
 
                 Color.Plum
             ),
-
-
         };
 
         /// <summary>
