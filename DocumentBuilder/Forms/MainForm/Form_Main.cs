@@ -1,4 +1,5 @@
-﻿using DocumentBuilder.Forms;
+﻿using DocumentBuilder.Builder;
+using DocumentBuilder.Forms;
 using DocumentBuilder.Forms.MainForm;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,14 @@ namespace DocumentBuilder.Forms
         }
 
         /// <summary>
+        /// Called on form load.
+        /// </summary>
+        private void Form_Main_Load(object sender, EventArgs e)
+        {
+            ComponentManager.UpdateSyntaxHighlighting();
+        }
+
+        /// <summary>
         /// Called when 'view logs' menu item is clicked.
         /// </summary>
         private void ListItem_ViewLogs_Click(object sender, EventArgs e)
@@ -54,5 +63,6 @@ namespace DocumentBuilder.Forms
         {
 
         }
+
     }
 }

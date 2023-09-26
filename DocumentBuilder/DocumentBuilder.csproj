@@ -46,6 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builder\Component\Component.cs" />
+    <Compile Include="Builder\Component\ComponentManager.cs" />
+    <Compile Include="Builder\Component\ComponentTemplate.cs" />
+    <Compile Include="Builder\Component\Line.cs" />
+    <Compile Include="Builder\Document\Document.cs" />
+    <Compile Include="Builder\Document\OutputRenderer.cs" />
+    <Compile Include="Builder\Parsing\DocumentParser.cs" />
     <Compile Include="Forms\AboutForm\Form_About.cs">
       <SubType>Form</SubType>
     </Compile>

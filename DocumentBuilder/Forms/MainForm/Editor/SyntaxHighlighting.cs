@@ -27,7 +27,7 @@ namespace DocumentBuilder.Forms.MainForm
             int cursorPosition = textBox.SelectionStart;
             int currentLineIndex = textBox.GetLineFromCharIndex(cursorPosition);
             int firstCharIndex = textBox.GetFirstCharIndexFromLine(currentLineIndex);
-            
+
             // Text of the current line.
             string currentLine = textBox.Lines[currentLineIndex];
             textBox.WordWrap = false;
@@ -52,7 +52,7 @@ namespace DocumentBuilder.Forms.MainForm
 
             MatchCollection componentMatches = components.Matches(currentLine);
 
-            foreach(Match componentMatch in componentMatches)
+            foreach (Match componentMatch in componentMatches)
             {
                 // Start index of the component in the textbox.
                 int componentIndex = firstCharIndex + componentMatch.Index;
@@ -62,7 +62,7 @@ namespace DocumentBuilder.Forms.MainForm
                 // Match [ ] ( ) =.
                 Regex closures = new Regex(@"\[|\]|\(|\)|=");
 
-                foreach(Match closureMatch in closures.Matches(component))
+                foreach (Match closureMatch in closures.Matches(component))
                 {
                     LogManager.LogDebugMessage($"closure detected: {closureMatch.Value}");
 
@@ -77,7 +77,7 @@ namespace DocumentBuilder.Forms.MainForm
                 // Match all word characters.
                 Regex tokens = new Regex(@"[a-zA-Z]*");
 
-                foreach(Match tokenMatch in tokens.Matches(component))
+                foreach (Match tokenMatch in tokens.Matches(component))
                 {
                     string token = tokenMatch.Value;
 
@@ -100,7 +100,7 @@ namespace DocumentBuilder.Forms.MainForm
                 // Tabs offset the color index on numbers for some reason.
                 int tabCount = currentLine.Count(ch => ch == '\t');
 
-                foreach(Match numericMatch in numericChars.Matches(currentLine))
+                foreach (Match numericMatch in numericChars.Matches(currentLine))
                 {
                     int numericIndex = componentIndex + numericMatch.Index;
 
@@ -145,76 +145,7 @@ namespace DocumentBuilder.Forms.MainForm
         // List of keywords and their colorings.
         private static List<KeywordGroup> keywordGroups = new List<KeywordGroup>
         {
-            // Page start and end.
-            new KeywordGroup
-            (
-                new List<string>
-                {
-                    "Page",
-                    "EndPage"
-                },
-
-                false,
-
-                Color.Blue
-            ),
-
-            // ColumnGroup start and end.
-            new KeywordGroup
-            (
-                new List<string>
-                {
-                    "ColumnGroup",
-                    "EndColumnGroup",
-                },
-
-                false,
-
-                Color.CornflowerBlue
-            ),
-
-            // Column start and end.
-            new KeywordGroup
-            (
-                new List<string>
-                {
-                    "Column",
-                    "EndColumn"
-                },
-
-                false,
-
-                Color.BlueViolet
-            ),
-
-            // HSpans.
-            new KeywordGroup
-            (
-                new List<string>
-                {
-                    "HSpan"
-                },
-
-                true,
-
-                Color.HotPink
-            ),
-
-            // VSpacers and HSpacers.
-            new KeywordGroup
-            (
-                new List<string>
-                {
-                    "HSpacer",
-                    "VSpacer"
-                },
-
-                false,
-
-                Color.Violet
-            ),
-
-            // Parameters.
+            // Properties
             new KeywordGroup
             (
                 new List<string>
@@ -222,13 +153,40 @@ namespace DocumentBuilder.Forms.MainForm
                     "Alignment",
                     "Width",
                     "Height",
+                    "SpanChar",
                 },
-
-                false,
 
                 Color.Plum
             ),
+
+            // Alignments
+            new KeywordGroup
+            (
+                new List<string>
+                {
+                    "Left",
+                    "Right"
+                },
+                
+                Color.LightSeaGreen
+            )
         };
+
+        /// <summary>
+        /// Adds a keyword to the list based on color. Creates new group if none exist for color.
+        /// </summary>
+        public static void AddByColor(string keywordName, Color keywordColor)
+        {
+            KeywordGroup existingGroup = keywordGroups.Find(x => x.keywordColor == keywordColor);
+
+            if (existingGroup == null)
+            {
+                keywordGroups.Add(new KeywordGroup(new List<string> { keywordName }, keywordColor));
+                return;
+            }
+
+            existingGroup.keywords.Add(keywordName);
+        }
 
         /// <summary>
         /// Returns a keyword group if the inputted keyword matches one in a group.
@@ -257,10 +215,9 @@ namespace DocumentBuilder.Forms.MainForm
         /// <summary>
         /// Parameterized constructor for a KeywordGroup.
         /// </summary>
-        public KeywordGroup(List<string> keywords, bool colorLine, Color keywordColor)
+        public KeywordGroup(List<string> keywords, Color keywordColor)
         {
             this.keywords = keywords;
-            this.colorLine = colorLine;
             this.keywordColor = keywordColor;
         }
 

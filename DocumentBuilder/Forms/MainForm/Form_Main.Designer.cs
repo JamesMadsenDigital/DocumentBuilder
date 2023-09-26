@@ -35,18 +35,19 @@
             this.MenuItem_NewResume = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItem_Open = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItem_Help = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuItem_About = new System.Windows.Forms.ToolStripMenuItem();
             this.ListItem_ShowDocumentation = new System.Windows.Forms.ToolStripMenuItem();
             this.ListItem_ViewLogs = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItem_About = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.RichText_Editor = new System.Windows.Forms.RichTextBox();
-            this.RichText_Viewer = new System.Windows.Forms.RichTextBox();
-            this.Text_InputFilePath = new System.Windows.Forms.TextBox();
-            this.Button_OpenFile = new System.Windows.Forms.Button();
-            this.Button_Export = new System.Windows.Forms.Button();
-            this.ProgressBar_BuildDocument = new System.Windows.Forms.ProgressBar();
-            this.Label_View = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.Button_OpenFile = new System.Windows.Forms.Button();
+            this.Text_InputFilePath = new System.Windows.Forms.TextBox();
+            this.RichText_Editor = new System.Windows.Forms.RichTextBox();
+            this.Label_View = new System.Windows.Forms.Label();
+            this.ProgressBar_BuildDocument = new System.Windows.Forms.ProgressBar();
+            this.Button_Export = new System.Windows.Forms.Button();
+            this.RichText_Viewer = new System.Windows.Forms.RichTextBox();
+            this.Button_PrintComponents = new System.Windows.Forms.Button();
             this.MenuStrip_Main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -81,25 +82,25 @@
             this.MenuItem_NewBasicDocument,
             this.MenuItem_NewResume});
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.newToolStripMenuItem.Text = "New...";
             // 
             // MenuItem_NewBasicDocument
             // 
             this.MenuItem_NewBasicDocument.Name = "MenuItem_NewBasicDocument";
-            this.MenuItem_NewBasicDocument.Size = new System.Drawing.Size(180, 22);
+            this.MenuItem_NewBasicDocument.Size = new System.Drawing.Size(160, 22);
             this.MenuItem_NewBasicDocument.Text = "Basic Document";
             // 
             // MenuItem_NewResume
             // 
             this.MenuItem_NewResume.Name = "MenuItem_NewResume";
-            this.MenuItem_NewResume.Size = new System.Drawing.Size(180, 22);
+            this.MenuItem_NewResume.Size = new System.Drawing.Size(160, 22);
             this.MenuItem_NewResume.Text = "Resume";
             // 
             // MenuItem_Open
             // 
             this.MenuItem_Open.Name = "MenuItem_Open";
-            this.MenuItem_Open.Size = new System.Drawing.Size(180, 22);
+            this.MenuItem_Open.Size = new System.Drawing.Size(112, 22);
             this.MenuItem_Open.Text = "Open...";
             // 
             // MenuItem_Help
@@ -111,25 +112,25 @@
             this.MenuItem_Help.Size = new System.Drawing.Size(44, 20);
             this.MenuItem_Help.Text = "Help";
             // 
+            // ListItem_ShowDocumentation
+            // 
+            this.ListItem_ShowDocumentation.Name = "ListItem_ShowDocumentation";
+            this.ListItem_ShowDocumentation.Size = new System.Drawing.Size(157, 22);
+            this.ListItem_ShowDocumentation.Text = "Documentation";
+            // 
+            // ListItem_ViewLogs
+            // 
+            this.ListItem_ViewLogs.Name = "ListItem_ViewLogs";
+            this.ListItem_ViewLogs.Size = new System.Drawing.Size(157, 22);
+            this.ListItem_ViewLogs.Text = "View Logs";
+            this.ListItem_ViewLogs.Click += new System.EventHandler(this.ListItem_ViewLogs_Click);
+            // 
             // MenuItem_About
             // 
             this.MenuItem_About.Name = "MenuItem_About";
             this.MenuItem_About.Size = new System.Drawing.Size(52, 20);
             this.MenuItem_About.Text = "About";
             this.MenuItem_About.Click += new System.EventHandler(this.MenuItem_About_Click);
-            // 
-            // ListItem_ShowDocumentation
-            // 
-            this.ListItem_ShowDocumentation.Name = "ListItem_ShowDocumentation";
-            this.ListItem_ShowDocumentation.Size = new System.Drawing.Size(180, 22);
-            this.ListItem_ShowDocumentation.Text = "Documentation";
-            // 
-            // ListItem_ViewLogs
-            // 
-            this.ListItem_ViewLogs.Name = "ListItem_ViewLogs";
-            this.ListItem_ViewLogs.Size = new System.Drawing.Size(180, 22);
-            this.ListItem_ViewLogs.Text = "View Logs";
-            this.ListItem_ViewLogs.Click += new System.EventHandler(this.ListItem_ViewLogs_Click);
             // 
             // splitContainer1
             // 
@@ -140,6 +141,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.Button_PrintComponents);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
             this.splitContainer1.Panel1.Controls.Add(this.Button_OpenFile);
             this.splitContainer1.Panel1.Controls.Add(this.Text_InputFilePath);
@@ -154,6 +156,36 @@
             this.splitContainer1.Size = new System.Drawing.Size(1633, 1019);
             this.splitContainer1.SplitterDistance = 801;
             this.splitContainer1.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(3, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(30, 16);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Edit";
+            // 
+            // Button_OpenFile
+            // 
+            this.Button_OpenFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_OpenFile.Location = new System.Drawing.Point(762, 36);
+            this.Button_OpenFile.Name = "Button_OpenFile";
+            this.Button_OpenFile.Size = new System.Drawing.Size(34, 20);
+            this.Button_OpenFile.TabIndex = 2;
+            this.Button_OpenFile.Text = "...";
+            this.Button_OpenFile.UseVisualStyleBackColor = true;
+            // 
+            // Text_InputFilePath
+            // 
+            this.Text_InputFilePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Text_InputFilePath.Location = new System.Drawing.Point(3, 36);
+            this.Text_InputFilePath.Name = "Text_InputFilePath";
+            this.Text_InputFilePath.ReadOnly = true;
+            this.Text_InputFilePath.Size = new System.Drawing.Size(753, 20);
+            this.Text_InputFilePath.TabIndex = 1;
             // 
             // RichText_Editor
             // 
@@ -170,6 +202,35 @@
             this.RichText_Editor.Text = "";
             this.RichText_Editor.TextChanged += new System.EventHandler(this.Editor_TextChanged);
             // 
+            // Label_View
+            // 
+            this.Label_View.AutoSize = true;
+            this.Label_View.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_View.Location = new System.Drawing.Point(3, 9);
+            this.Label_View.Name = "Label_View";
+            this.Label_View.Size = new System.Drawing.Size(36, 16);
+            this.Label_View.TabIndex = 4;
+            this.Label_View.Text = "View";
+            // 
+            // ProgressBar_BuildDocument
+            // 
+            this.ProgressBar_BuildDocument.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProgressBar_BuildDocument.Location = new System.Drawing.Point(3, 36);
+            this.ProgressBar_BuildDocument.Name = "ProgressBar_BuildDocument";
+            this.ProgressBar_BuildDocument.Size = new System.Drawing.Size(820, 19);
+            this.ProgressBar_BuildDocument.TabIndex = 5;
+            // 
+            // Button_Export
+            // 
+            this.Button_Export.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_Export.Location = new System.Drawing.Point(641, 974);
+            this.Button_Export.Name = "Button_Export";
+            this.Button_Export.Size = new System.Drawing.Size(174, 32);
+            this.Button_Export.TabIndex = 4;
+            this.Button_Export.Text = "Export";
+            this.Button_Export.UseVisualStyleBackColor = true;
+            // 
             // RichText_Viewer
             // 
             this.RichText_Viewer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -183,64 +244,15 @@
             this.RichText_Viewer.TabIndex = 0;
             this.RichText_Viewer.Text = "";
             // 
-            // Text_InputFilePath
+            // Button_PrintComponents
             // 
-            this.Text_InputFilePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Text_InputFilePath.Location = new System.Drawing.Point(3, 36);
-            this.Text_InputFilePath.Name = "Text_InputFilePath";
-            this.Text_InputFilePath.ReadOnly = true;
-            this.Text_InputFilePath.Size = new System.Drawing.Size(753, 20);
-            this.Text_InputFilePath.TabIndex = 1;
-            // 
-            // Button_OpenFile
-            // 
-            this.Button_OpenFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_OpenFile.Location = new System.Drawing.Point(762, 36);
-            this.Button_OpenFile.Name = "Button_OpenFile";
-            this.Button_OpenFile.Size = new System.Drawing.Size(34, 20);
-            this.Button_OpenFile.TabIndex = 2;
-            this.Button_OpenFile.Text = "...";
-            this.Button_OpenFile.UseVisualStyleBackColor = true;
-            // 
-            // Button_Export
-            // 
-            this.Button_Export.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_Export.Location = new System.Drawing.Point(641, 974);
-            this.Button_Export.Name = "Button_Export";
-            this.Button_Export.Size = new System.Drawing.Size(174, 32);
-            this.Button_Export.TabIndex = 4;
-            this.Button_Export.Text = "Export";
-            this.Button_Export.UseVisualStyleBackColor = true;
-            // 
-            // ProgressBar_BuildDocument
-            // 
-            this.ProgressBar_BuildDocument.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProgressBar_BuildDocument.Location = new System.Drawing.Point(3, 36);
-            this.ProgressBar_BuildDocument.Name = "ProgressBar_BuildDocument";
-            this.ProgressBar_BuildDocument.Size = new System.Drawing.Size(820, 19);
-            this.ProgressBar_BuildDocument.TabIndex = 5;
-            // 
-            // Label_View
-            // 
-            this.Label_View.AutoSize = true;
-            this.Label_View.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_View.Location = new System.Drawing.Point(3, 9);
-            this.Label_View.Name = "Label_View";
-            this.Label_View.Size = new System.Drawing.Size(36, 16);
-            this.Label_View.TabIndex = 4;
-            this.Label_View.Text = "View";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(30, 16);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Edit";
+            this.Button_PrintComponents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_PrintComponents.Location = new System.Drawing.Point(613, 974);
+            this.Button_PrintComponents.Name = "Button_PrintComponents";
+            this.Button_PrintComponents.Size = new System.Drawing.Size(174, 32);
+            this.Button_PrintComponents.TabIndex = 6;
+            this.Button_PrintComponents.Text = "Print Components";
+            this.Button_PrintComponents.UseVisualStyleBackColor = true;
             // 
             // Form_Main
             // 
@@ -252,6 +264,7 @@
             this.MainMenuStrip = this.MenuStrip_Main;
             this.Name = "Form_Main";
             this.Text = "Document Builder";
+            this.Load += new System.EventHandler(this.Form_Main_Load);
             this.MenuStrip_Main.ResumeLayout(false);
             this.MenuStrip_Main.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -286,6 +299,7 @@
         private System.Windows.Forms.ProgressBar ProgressBar_BuildDocument;
         private System.Windows.Forms.Label Label_View;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button Button_PrintComponents;
     }
 }
 
