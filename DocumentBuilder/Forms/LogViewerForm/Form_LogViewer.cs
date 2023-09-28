@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DocumentBuilder.Logs;
+using DocumentBuilder.Debug;
 
 namespace DocumentBuilder.Forms
 {
@@ -21,7 +21,7 @@ namespace DocumentBuilder.Forms
 
         public static void ShowLogViewerForm()
         {
-            LogManager.LogDebugMessage("Showing LogViewer form.");
+            Debug.Logs.LogDebugMessage("Showing LogViewer form.");
             // If there is no form active.
             if (activeLogViewerForm == null)
             {
@@ -69,7 +69,7 @@ namespace DocumentBuilder.Forms
         /// </summary>
         private void Button_ClearLogs_Click(object sender, EventArgs e)
         {
-            LogManager.ClearLogs();
+            Debug.Logs.ClearLogs();
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace DocumentBuilder.Forms
             List_Logs.Items.Clear();
 
             // Add each log to the list.
-            foreach(string logMessage in LogManager.GetLogMessages())
+            foreach(string logMessage in Debug.Logs.GetLogMessages())
                 List_Logs.Items.Add(logMessage);
         }
     }

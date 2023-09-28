@@ -7,8 +7,8 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Runtime.CompilerServices;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using DocumentBuilder.Logs;
+using DocumentBuilder.Debug;
+using DocumentBuilder.Builder;
 
 namespace DocumentBuilder.Forms.MainForm
 {
@@ -33,7 +33,7 @@ namespace DocumentBuilder.Forms.MainForm
             textBox.WordWrap = false;
 
             // Color entire line for comments. Reset color if not a comment.
-            if (IsComment(currentLine))
+            if (DocumentParser.IsComment(currentLine))
             {
                 ChangeLineColor(textBox, currentLineIndex, Color.Green);
                 textBox.Select(cursorPosition, 0);
@@ -50,79 +50,60 @@ namespace DocumentBuilder.Forms.MainForm
             // Capture all text between square brackets.
             Regex components = new Regex("\\[(.*?)\\]");
 
-            MatchCollection componentMatches = components.Matches(currentLine);
+            Match componentMatch = components.Match(currentLine);
 
-            foreach (Match componentMatch in componentMatches)
+            // Start index of the component in the textbox.
+            int componentIndex = firstCharIndex + componentMatch.Index;
+
+            string component = componentMatch.Value;
+
+            // Match [ ] ( ) =.
+            Regex closures = new Regex(@"\[|\]|\(|\)|=");
+
+            foreach (Match closureMatch in closures.Matches(component))
             {
-                // Start index of the component in the textbox.
-                int componentIndex = firstCharIndex + componentMatch.Index;
+                // Start index of the closure in the textbox.
+                int closureIndex = componentIndex + closureMatch.Index;
 
-                string component = componentMatch.Value;
+                textBox.Select(closureIndex, 1);
 
-                // Match [ ] ( ) =.
-                Regex closures = new Regex(@"\[|\]|\(|\)|=");
-
-                foreach (Match closureMatch in closures.Matches(component))
-                {
-                    LogManager.LogDebugMessage($"closure detected: {closureMatch.Value}");
-
-                    // Start index of the closure in the textbox.
-                    int closureIndex = componentIndex + closureMatch.Index;
-
-                    textBox.Select(closureIndex, 1);
-
-                    textBox.SelectionColor = Color.LightGray;
-                }
-
-                // Match all word characters.
-                Regex tokens = new Regex(@"[a-zA-Z]*");
-
-                foreach (Match tokenMatch in tokens.Matches(component))
-                {
-                    string token = tokenMatch.Value;
-
-                    int tokenIndex = componentIndex + tokenMatch.Index;
-
-                    KeywordGroup keywordGroup = KeyWords.KeywordMatch(token);
-
-                    Color tokenColor = Color.Red;
-
-                    if (keywordGroup != null)
-                        tokenColor = keywordGroup.keywordColor;
-
-                    textBox.Select(tokenIndex, token.Length);
-                    textBox.SelectionColor = tokenColor;
-                }
-
-                // Match all numeric characters.
-                Regex numericChars = new Regex("[0-9]");
-
-                // Tabs offset the color index on numbers for some reason.
-                int tabCount = currentLine.Count(ch => ch == '\t');
-
-                foreach (Match numericMatch in numericChars.Matches(currentLine))
-                {
-                    int numericIndex = componentIndex + numericMatch.Index;
-
-                    textBox.Select(numericIndex - tabCount, 1);
-                    textBox.SelectionColor = Color.Purple;
-                }
+                textBox.SelectionColor = Color.LightGray;
             }
 
+            // Match all word characters.
+            Regex tokens = new Regex(@"[a-zA-Z]*");
+
+            foreach (Match tokenMatch in tokens.Matches(component))
+            {
+                string token = tokenMatch.Value;
+
+                int tokenIndex = componentIndex + tokenMatch.Index;
+
+                KeywordGroup keywordGroup = KeyWords.KeywordMatch(token);
+
+                Color tokenColor = Color.Red;
+
+                if (keywordGroup != null)
+                    tokenColor = keywordGroup.keywordColor;
+
+                textBox.Select(tokenIndex, token.Length);
+                textBox.SelectionColor = tokenColor;
+            }
+
+            // Match all numeric characters.
+            Regex numericChars = new Regex("[0-9]");
+
+            foreach (Match numericMatch in numericChars.Matches(component))
+            {
+                int numericIndex = componentIndex + numericMatch.Index;
+
+                textBox.Select(numericIndex, 1);
+                textBox.SelectionColor = Color.Purple;
+            }
+            
             // Reset selection and color.
             textBox.Select(cursorPosition, 0);
             textBox.SelectionColor = Color.Black;
-        }
-
-        /// <summary>
-        /// Returns true if a line is a comment (Marked with // at start of line).
-        /// </summary>
-        private static bool IsComment(string line)
-        {
-            // Remove leading and trailing whitespaces.
-            string trimmed = line.Trim();
-
-            return trimmed.StartsWith("//");
         }
 
         /// <summary>
@@ -154,9 +135,11 @@ namespace DocumentBuilder.Forms.MainForm
                     "Width",
                     "Height",
                     "SpanChar",
+                    "X",
+                    "Y",
                 },
 
-                Color.Plum
+                Color.PaleVioletRed
             ),
 
             // Alignments
@@ -201,14 +184,11 @@ namespace DocumentBuilder.Forms.MainForm
     }
 
     /// <summary>
-    /// Represents a group of keywords that are highlighted with a given color.
+    /// Group of keywords that are highlighted with a given color.
     /// </summary>
     internal class KeywordGroup
     {
         public List<string> keywords = new List<string>();
-
-        // Should this keyword color the entire line if detected?
-        public bool colorLine = false;
 
         public Color keywordColor = Color.Black;
 

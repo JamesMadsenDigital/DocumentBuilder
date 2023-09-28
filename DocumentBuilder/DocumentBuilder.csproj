@@ -49,9 +49,15 @@
     <Compile Include="Builder\Component\Component.cs" />
     <Compile Include="Builder\Component\ComponentManager.cs" />
     <Compile Include="Builder\Component\ComponentTemplate.cs" />
+    <Compile Include="Builder\Component\Container.cs" />
     <Compile Include="Builder\Component\Line.cs" />
+    <Compile Include="Builder\Document\Page.cs" />
     <Compile Include="Builder\Document\Document.cs" />
-    <Compile Include="Builder\Document\OutputRenderer.cs" />
+    <Compile Include="Builder\Parsing\ContainerBuilder.cs" />
+    <Compile Include="Builder\Parsing\DocumentDebug.cs" />
+    <Compile Include="Builder\Parsing\PageBuilder.cs" />
+    <Compile Include="Builder\Rendering\ComponentRenderer.cs" />
+    <Compile Include="Builder\Rendering\OutputRenderer.cs" />
     <Compile Include="Builder\Parsing\DocumentParser.cs" />
     <Compile Include="Forms\AboutForm\Form_About.cs">
       <SubType>Form</SubType>
@@ -72,7 +78,7 @@
     <Compile Include="Forms\MainForm\Form_Main.Designer.cs">
       <DependentUpon>Form_Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="Logs\LogManager.cs" />
+    <Compile Include="Logs\Logs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\AboutForm\Form_About.resx">
@@ -109,6 +115,7 @@
   <ItemGroup>
     <Folder Include="FileManager\" />
     <Folder Include="Forms\HelpForm\" />
+    <Folder Include="Forms\MainForm\Viewer\" />
     <Folder Include="Output\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
