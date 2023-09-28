@@ -1,4 +1,4 @@
-﻿using DocumentBuilder.Logs;
+﻿using DocumentBuilder.Debug;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,7 +21,7 @@ namespace DocumentBuilder.Forms
 
         public static void ShowAboutForm()
         {
-            LogManager.LogDebugMessage("Showing About form.");
+            Debug.Logs.LogDebugMessage("Showing About form.");
             // If there is no form active.
             if(activeAboutForm == null)
             {

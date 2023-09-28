@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using DocumentBuilder.Forms.MainForm;
-using DocumentBuilder.Logs;
+using DocumentBuilder.Debug;
 
 namespace DocumentBuilder.Builder
 {
@@ -32,65 +32,44 @@ namespace DocumentBuilder.Builder
                 new Dictionary<string, object>{}
             ),
 
-            // ColumnGroups.
+            // Containers.
             new ComponentTemplate
             (
-                "ColumnGroup",
+                "Container",
                 Color.CornflowerBlue,
                 new Dictionary<string, object>
                 {
-                    { "Width", 50 },
-                    { "Height", 30 }
+                    { "X", -1 },
+                    { "Y", 0 },
+                    { "Width", -1 },
+                    { "Alignment", "Left" },
                 }
             ),
             new ComponentTemplate
             (
-                "EndColumnGroup",
+                "EndContainer",
                 Color.CornflowerBlue,
-                new Dictionary<string, object>{}
-            ),
-
-            // Columns.
-            new ComponentTemplate
-            (
-                "Column",
-                Color.BlueViolet,
                 new Dictionary<string, object>
                 {
-                    { "Width", 20 },
-                    { "Height", 30 },
-                    { "Alignment", "Left" }
+
                 }
-            ),
-            new ComponentTemplate
-            (
-                "EndColumn",
-                Color.BlueViolet,
-                new Dictionary<string, object>{}
             ),
 
-            // VSpacer and HSpacer.
-            new ComponentTemplate
-            (
-                "VSpacer",
-                Color.Violet,
-                new Dictionary<string, object>
-                {
-                    { "Height", 1 }
-                }
-            ),
             new ComponentTemplate
             (
                 "HSpacer",
-                Color.Violet,
-                new Dictionary<string, object>{}
+                Color.Plum,
+                new Dictionary<string, object>
+                {
+                    { "SplitIndex", 0 }
+                }
             ),
 
             // VSpacer and HSpacer.
             new ComponentTemplate
             (
                 "HSpan",
-                Color.Plum,
+                Color.DarkTurquoise,
                 new Dictionary<string, object>
                 {
                     { "SpanChar", 1 }
@@ -103,23 +82,20 @@ namespace DocumentBuilder.Builder
         /// </summary>
         public static void UpdateSyntaxHighlighting()
         {
-            LogManager.LogDebugMessage("Updating syntax highlighting.");
+            Debug.Logs.LogDebugMessage("Updating syntax highlighting.");
 
             foreach(var component in pageComponents)
                 KeyWords.AddByColor(component.name, component.syntaxColor);
         }
 
         /// <summary>
-        /// Returns a default component and its properties.
+        /// Returns a component template.
         /// </summary>
-        public static Component DefaultComponent(string name)
+        public static ComponentTemplate GetComponentTemplate(string name)
         {
-            ComponentTemplate template = pageComponents.Find(x => x.Equals(name));
+            ComponentTemplate template = pageComponents.Find(x => x.name == name);
 
-            if (template == null)
-                return null;
-
-            return new Component(template);
+            return template;
         }
     }
 }

@@ -13,13 +13,13 @@ namespace DocumentBuilder.Builder
     internal class ComponentTemplate
     {
         // Name of the component
-        public string name;
+        public string name { get; private set; }
 
         // Color component is drawn with in editor.
-        public Color syntaxColor;
+        public Color syntaxColor { get; private set; }
 
         // Default properties of the component
-        public Dictionary<string, object> properties = new Dictionary<string, object>();
+        public Dictionary<string, object> properties { get; private set; }
 
         /// <summary>
         /// Constructor for a component template.
@@ -28,7 +28,7 @@ namespace DocumentBuilder.Builder
         {
             this.name = name;
             this.syntaxColor = syntaxColor;
-            this.properties = defaultProperties;
+            properties = defaultProperties;
         }
     }
 }

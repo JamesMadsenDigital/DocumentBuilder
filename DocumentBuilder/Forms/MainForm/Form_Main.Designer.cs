@@ -39,20 +39,25 @@
             this.ListItem_ViewLogs = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItem_About = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.label1 = new System.Windows.Forms.Label();
-            this.Button_OpenFile = new System.Windows.Forms.Button();
+            this.Group_EditorControls = new System.Windows.Forms.GroupBox();
             this.Text_InputFilePath = new System.Windows.Forms.TextBox();
+            this.Button_OpenFile = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.RichText_Editor = new System.Windows.Forms.RichTextBox();
+            this.Group_ViewControls = new System.Windows.Forms.GroupBox();
+            this.Label_PageNumber = new System.Windows.Forms.Label();
+            this.Number_Page = new System.Windows.Forms.NumericUpDown();
             this.Label_View = new System.Windows.Forms.Label();
-            this.ProgressBar_BuildDocument = new System.Windows.Forms.ProgressBar();
             this.Button_Export = new System.Windows.Forms.Button();
-            this.RichText_Viewer = new System.Windows.Forms.RichTextBox();
-            this.Button_PrintComponents = new System.Windows.Forms.Button();
+            this.Text_Viewer = new System.Windows.Forms.TextBox();
             this.MenuStrip_Main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.Group_EditorControls.SuspendLayout();
+            this.Group_ViewControls.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Number_Page)).BeginInit();
             this.SuspendLayout();
             // 
             // MenuStrip_Main
@@ -141,21 +146,51 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.Button_PrintComponents);
+            this.splitContainer1.Panel1.Controls.Add(this.Group_EditorControls);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
-            this.splitContainer1.Panel1.Controls.Add(this.Button_OpenFile);
-            this.splitContainer1.Panel1.Controls.Add(this.Text_InputFilePath);
             this.splitContainer1.Panel1.Controls.Add(this.RichText_Editor);
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.Text_Viewer);
+            this.splitContainer1.Panel2.Controls.Add(this.Group_ViewControls);
             this.splitContainer1.Panel2.Controls.Add(this.Label_View);
-            this.splitContainer1.Panel2.Controls.Add(this.ProgressBar_BuildDocument);
             this.splitContainer1.Panel2.Controls.Add(this.Button_Export);
-            this.splitContainer1.Panel2.Controls.Add(this.RichText_Viewer);
             this.splitContainer1.Size = new System.Drawing.Size(1633, 1019);
             this.splitContainer1.SplitterDistance = 801;
             this.splitContainer1.TabIndex = 1;
+            // 
+            // Group_EditorControls
+            // 
+            this.Group_EditorControls.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Group_EditorControls.Controls.Add(this.Text_InputFilePath);
+            this.Group_EditorControls.Controls.Add(this.Button_OpenFile);
+            this.Group_EditorControls.Location = new System.Drawing.Point(3, 28);
+            this.Group_EditorControls.Name = "Group_EditorControls";
+            this.Group_EditorControls.Size = new System.Drawing.Size(793, 41);
+            this.Group_EditorControls.TabIndex = 7;
+            this.Group_EditorControls.TabStop = false;
+            // 
+            // Text_InputFilePath
+            // 
+            this.Text_InputFilePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Text_InputFilePath.Location = new System.Drawing.Point(8, 14);
+            this.Text_InputFilePath.Name = "Text_InputFilePath";
+            this.Text_InputFilePath.ReadOnly = true;
+            this.Text_InputFilePath.Size = new System.Drawing.Size(735, 20);
+            this.Text_InputFilePath.TabIndex = 1;
+            // 
+            // Button_OpenFile
+            // 
+            this.Button_OpenFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_OpenFile.Location = new System.Drawing.Point(752, 14);
+            this.Button_OpenFile.Name = "Button_OpenFile";
+            this.Button_OpenFile.Size = new System.Drawing.Size(34, 20);
+            this.Button_OpenFile.TabIndex = 2;
+            this.Button_OpenFile.Text = "...";
+            this.Button_OpenFile.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -167,26 +202,6 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Edit";
             // 
-            // Button_OpenFile
-            // 
-            this.Button_OpenFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_OpenFile.Location = new System.Drawing.Point(762, 36);
-            this.Button_OpenFile.Name = "Button_OpenFile";
-            this.Button_OpenFile.Size = new System.Drawing.Size(34, 20);
-            this.Button_OpenFile.TabIndex = 2;
-            this.Button_OpenFile.Text = "...";
-            this.Button_OpenFile.UseVisualStyleBackColor = true;
-            // 
-            // Text_InputFilePath
-            // 
-            this.Text_InputFilePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Text_InputFilePath.Location = new System.Drawing.Point(3, 36);
-            this.Text_InputFilePath.Name = "Text_InputFilePath";
-            this.Text_InputFilePath.ReadOnly = true;
-            this.Text_InputFilePath.Size = new System.Drawing.Size(753, 20);
-            this.Text_InputFilePath.TabIndex = 1;
-            // 
             // RichText_Editor
             // 
             this.RichText_Editor.AcceptsTab = true;
@@ -195,12 +210,46 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.RichText_Editor.BackColor = System.Drawing.SystemColors.Window;
             this.RichText_Editor.Font = new System.Drawing.Font("Cascadia Code", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RichText_Editor.Location = new System.Drawing.Point(3, 68);
+            this.RichText_Editor.Location = new System.Drawing.Point(3, 75);
             this.RichText_Editor.Name = "RichText_Editor";
-            this.RichText_Editor.Size = new System.Drawing.Size(793, 893);
+            this.RichText_Editor.Size = new System.Drawing.Size(793, 886);
             this.RichText_Editor.TabIndex = 0;
             this.RichText_Editor.Text = "";
             this.RichText_Editor.TextChanged += new System.EventHandler(this.Editor_TextChanged);
+            // 
+            // Group_ViewControls
+            // 
+            this.Group_ViewControls.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Group_ViewControls.Controls.Add(this.Label_PageNumber);
+            this.Group_ViewControls.Controls.Add(this.Number_Page);
+            this.Group_ViewControls.Location = new System.Drawing.Point(3, 27);
+            this.Group_ViewControls.Name = "Group_ViewControls";
+            this.Group_ViewControls.Size = new System.Drawing.Size(820, 41);
+            this.Group_ViewControls.TabIndex = 6;
+            this.Group_ViewControls.TabStop = false;
+            // 
+            // Label_PageNumber
+            // 
+            this.Label_PageNumber.AutoSize = true;
+            this.Label_PageNumber.Location = new System.Drawing.Point(6, 16);
+            this.Label_PageNumber.Name = "Label_PageNumber";
+            this.Label_PageNumber.Size = new System.Drawing.Size(32, 13);
+            this.Label_PageNumber.TabIndex = 6;
+            this.Label_PageNumber.Text = "Page";
+            // 
+            // Number_Page
+            // 
+            this.Number_Page.Location = new System.Drawing.Point(43, 13);
+            this.Number_Page.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.Number_Page.Name = "Number_Page";
+            this.Number_Page.Size = new System.Drawing.Size(54, 20);
+            this.Number_Page.TabIndex = 5;
+            this.Number_Page.ValueChanged += new System.EventHandler(this.Number_Page_ValueChanged);
             // 
             // Label_View
             // 
@@ -212,15 +261,6 @@
             this.Label_View.TabIndex = 4;
             this.Label_View.Text = "View";
             // 
-            // ProgressBar_BuildDocument
-            // 
-            this.ProgressBar_BuildDocument.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProgressBar_BuildDocument.Location = new System.Drawing.Point(3, 36);
-            this.ProgressBar_BuildDocument.Name = "ProgressBar_BuildDocument";
-            this.ProgressBar_BuildDocument.Size = new System.Drawing.Size(820, 19);
-            this.ProgressBar_BuildDocument.TabIndex = 5;
-            // 
             // Button_Export
             // 
             this.Button_Export.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -231,28 +271,19 @@
             this.Button_Export.Text = "Export";
             this.Button_Export.UseVisualStyleBackColor = true;
             // 
-            // RichText_Viewer
+            // Text_Viewer
             // 
-            this.RichText_Viewer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.Text_Viewer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.RichText_Viewer.Font = new System.Drawing.Font("Cascadia Code", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RichText_Viewer.Location = new System.Drawing.Point(3, 68);
-            this.RichText_Viewer.Name = "RichText_Viewer";
-            this.RichText_Viewer.ReadOnly = true;
-            this.RichText_Viewer.Size = new System.Drawing.Size(820, 893);
-            this.RichText_Viewer.TabIndex = 0;
-            this.RichText_Viewer.Text = "";
-            // 
-            // Button_PrintComponents
-            // 
-            this.Button_PrintComponents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_PrintComponents.Location = new System.Drawing.Point(613, 974);
-            this.Button_PrintComponents.Name = "Button_PrintComponents";
-            this.Button_PrintComponents.Size = new System.Drawing.Size(174, 32);
-            this.Button_PrintComponents.TabIndex = 6;
-            this.Button_PrintComponents.Text = "Print Components";
-            this.Button_PrintComponents.UseVisualStyleBackColor = true;
+            this.Text_Viewer.Font = new System.Drawing.Font("Cascadia Mono", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Text_Viewer.Location = new System.Drawing.Point(6, 75);
+            this.Text_Viewer.Multiline = true;
+            this.Text_Viewer.Name = "Text_Viewer";
+            this.Text_Viewer.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.Text_Viewer.Size = new System.Drawing.Size(817, 886);
+            this.Text_Viewer.TabIndex = 7;
+            this.Text_Viewer.WordWrap = false;
             // 
             // Form_Main
             // 
@@ -273,6 +304,11 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.Group_EditorControls.ResumeLayout(false);
+            this.Group_EditorControls.PerformLayout();
+            this.Group_ViewControls.ResumeLayout(false);
+            this.Group_ViewControls.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Number_Page)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -292,14 +328,16 @@
         private System.Windows.Forms.ToolStripMenuItem ListItem_ViewLogs;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.RichTextBox RichText_Editor;
-        private System.Windows.Forms.RichTextBox RichText_Viewer;
         private System.Windows.Forms.TextBox Text_InputFilePath;
         private System.Windows.Forms.Button Button_OpenFile;
         private System.Windows.Forms.Button Button_Export;
-        private System.Windows.Forms.ProgressBar ProgressBar_BuildDocument;
         private System.Windows.Forms.Label Label_View;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button Button_PrintComponents;
+        private System.Windows.Forms.NumericUpDown Number_Page;
+        private System.Windows.Forms.GroupBox Group_ViewControls;
+        private System.Windows.Forms.Label Label_PageNumber;
+        private System.Windows.Forms.GroupBox Group_EditorControls;
+        private System.Windows.Forms.TextBox Text_Viewer;
     }
 }
 

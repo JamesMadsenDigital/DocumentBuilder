@@ -18,6 +18,9 @@ namespace DocumentBuilder.Forms
     /// </summary>
     public partial class Form_Main : Form
     {
+        // Document object stored on form.
+        private Document currentDocument = null;
+
         /// <summary>
         /// Form constructor.
         /// </summary>
@@ -57,12 +60,37 @@ namespace DocumentBuilder.Forms
         private void Editor_TextChanged(object sender, EventArgs e)
         {
             SyntaxHighlighting.Update(RichText_Editor);
+
+            // Update document output.
+            currentDocument = DocumentParser.ParseDocument(RichText_Editor.Lines);
+
+            string[] renderedDocument = OutputRenderer.RenderDocument(currentDocument.GetPage((int)Number_Page.Value));
+
+            Text_Viewer.Lines = OutputRenderer.GetFormattedOutput(currentDocument.GetPage((int)Number_Page.Value), renderedDocument);
         }
 
+        /// <summary>
+        /// Shows the log viewer form when the progress bar is clicked.
+        /// </summary>
         private void ProgressBar_DocumentBuild_Click(object sender, EventArgs e)
         {
-
+            Form_LogViewer.ShowLogViewerForm();
         }
 
+        /// <summary>
+        /// When the page number in the viewer is changed.
+        /// </summary>
+        private void Number_Page_ValueChanged(object sender, EventArgs e)
+        {
+            Text_Viewer.Lines = OutputRenderer.RenderDocument(currentDocument.GetPage((int)Number_Page.Value));
+        }
+
+
+        private void Button_PrintComponents_Click(object sender, EventArgs e)
+        {
+            Form_LogViewer.ShowLogViewerForm();
+
+            DocumentDebug.PrintComponents(currentDocument);
+        }
     }
 }
