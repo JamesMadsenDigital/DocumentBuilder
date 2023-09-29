@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_LogViewer));
             this.List_Logs = new System.Windows.Forms.ListBox();
             this.Button_ClearLogs = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -61,6 +62,7 @@
             this.ClientSize = new System.Drawing.Size(1066, 567);
             this.Controls.Add(this.Button_ClearLogs);
             this.Controls.Add(this.List_Logs);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_LogViewer";
             this.Text = "Log Viewer";
             this.Load += new System.EventHandler(this.Form_LogViewer_Load);

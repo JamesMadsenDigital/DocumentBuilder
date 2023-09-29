@@ -1,0 +1,4 @@
+-Automatically open last opened file on start.
+-Save font size preferences
+-Fix syntax highlighting so editor can have font size adjusted.
+-Open with / open from file explorer.

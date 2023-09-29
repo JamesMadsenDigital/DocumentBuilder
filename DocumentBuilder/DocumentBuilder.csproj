@@ -12,6 +12,23 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>I:\Software\Document Builder\Builds\1.0\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <PublisherName>James Madsen</PublisherName>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +48,21 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>F1A4023D0088E2EC742BAE0522985748DE023AD7</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>DocumentBuilder_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -59,11 +91,24 @@
     <Compile Include="Builder\Rendering\ComponentRenderer.cs" />
     <Compile Include="Builder\Rendering\OutputRenderer.cs" />
     <Compile Include="Builder\Parsing\DocumentParser.cs" />
+    <Compile Include="FileManagement\FileManager.cs" />
     <Compile Include="Forms\AboutForm\Form_About.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\AboutForm\Form_About.Designer.cs">
       <DependentUpon>Form_About.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DocumentationForm\Form_Documentation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DocumentationForm\Form_Documentation.Designer.cs">
+      <DependentUpon>Form_Documentation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ExportForm\Form_Export.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ExportForm\Form_Export.Designer.cs">
+      <DependentUpon>Form_Export.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\LogViewerForm\Form_LogViewer.cs">
       <SubType>Form</SubType>
@@ -78,11 +123,17 @@
     <Compile Include="Forms\MainForm\Form_Main.Designer.cs">
       <DependentUpon>Form_Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="Logs\Logs.cs" />
+    <Compile Include="Debug\Logs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\AboutForm\Form_About.resx">
       <DependentUpon>Form_About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DocumentationForm\Form_Documentation.resx">
+      <DependentUpon>Form_Documentation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ExportForm\Form_Export.resx">
+      <DependentUpon>Form_Export.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LogViewerForm\Form_LogViewer.resx">
       <DependentUpon>Form_LogViewer.cs</DependentUpon>
@@ -99,6 +150,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="DocumentBuilder_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -113,10 +165,29 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="FileManager\" />
-    <Folder Include="Forms\HelpForm\" />
-    <Folder Include="Forms\MainForm\Viewer\" />
-    <Folder Include="Output\" />
+    <Content Include="Features.txt" />
+    <Content Include="Icon.ico" />
+    <Content Include="KnownBugs.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <FileAssociation Include=".dml">
+      <Visible>False</Visible>
+      <Description>Document Markup File</Description>
+      <Progid>dmlfile</Progid>
+      <DefaultIcon>Icon.ico</DefaultIcon>
+    </FileAssociation>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

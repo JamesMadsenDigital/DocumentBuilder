@@ -50,7 +50,7 @@ namespace DocumentBuilder.Forms
         /// </summary>
         private void Link_Portfolio_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            System.Diagnostics.Process.Start("https://www.jamesmadsendigital.com/documentbuilder");
         }
 
         /// <summary>
@@ -58,15 +58,7 @@ namespace DocumentBuilder.Forms
         /// </summary>
         private void Link_GitHub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
-        }
-
-        /// <summary>
-        /// Called when About form is closed.
-        /// </summary>
-        private void Form_About_Closed(object sender, FormClosedEventArgs e)
-        {
-
+            System.Diagnostics.Process.Start("https://github.com/JamesMadsenDigital/DocumentBuilder.git");
         }
     }
 }
