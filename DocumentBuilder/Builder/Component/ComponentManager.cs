@@ -55,6 +55,7 @@ namespace DocumentBuilder.Builder
                 }
             ),
 
+            // HSpacer.
             new ComponentTemplate
             (
                 "HSpacer",
@@ -65,7 +66,7 @@ namespace DocumentBuilder.Builder
                 }
             ),
 
-            // VSpacer and HSpacer.
+            // HSpan.
             new ComponentTemplate
             (
                 "HSpan",
@@ -82,8 +83,6 @@ namespace DocumentBuilder.Builder
         /// </summary>
         public static void UpdateSyntaxHighlighting()
         {
-            Debug.Logs.LogDebugMessage("Updating syntax highlighting.");
-
             foreach(var component in pageComponents)
                 KeyWords.AddByColor(component.name, component.syntaxColor);
         }

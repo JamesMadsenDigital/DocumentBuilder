@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace DocumentBuilder
@@ -60,7 +61,7 @@ namespace DocumentBuilder
 
                 string leftSide = hSpacer.index == 0 ? " " : lineText.Substring(0, hSpacer.index - 1);
                 
-                string rightSide = lineText.Substring(hSpacer.index, lineText.Length - hSpacer.index);
+                string rightSide = lineText.Substring(hSpacer.index - 1, lineText.Length - (hSpacer.index - 1));
 
                 DrawText(page, leftSide, yPosition, xPosition);
 
@@ -72,6 +73,18 @@ namespace DocumentBuilder
             NoComponents:
 
             DrawText(page, lineText, yPosition, xPosition);
+        }
+
+        /// <summary>
+        /// Counts the number of leading whitespaces in a string.
+        /// </summary>
+        private static int GetWhiteSpaceCount(string input)
+        {
+            Regex leadingWhiteSpaces = new Regex("^\\s*");
+
+            Match whiteSpaces = leadingWhiteSpaces.Match(input);
+
+            return whiteSpaces.Value.Length;
         }
 
         /// <summary>

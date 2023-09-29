@@ -13,9 +13,6 @@ namespace DocumentBuilder.Builder
     /// </summary>
     internal class Line
     {
-        // Container that this line belongs to.
-        public Container ParentContainer;
-
         // Text that is contained on the line.
         public string text = "";
 
@@ -36,10 +33,12 @@ namespace DocumentBuilder.Builder
                 return null;
         }
 
+        /// <summary>
+        /// Ad
+        /// </summary>
+        /// <param name="component"></param>
         public void AddComponent(Component component)
         {
-            Logs.LogDebugMessage($"Adding component {component.name} to line {text}. {component.rawText}");
-
             lineComponent = component;
         }
     }
