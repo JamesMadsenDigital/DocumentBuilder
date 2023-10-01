@@ -6,6 +6,7 @@ using DocumentBuilder.Components;
 using DocumentBuilder.Parsing;
 using DocumentBuilder.Rendering;
 using DocumentBuilder.Editing;
+using System.Threading;
 
 namespace DocumentBuilder.Forms
 {
@@ -19,16 +20,6 @@ namespace DocumentBuilder.Forms
 
         // Path to document being edited.
         private string openFilePath = "";
-        public string OpenFilePath
-        {
-            get { return openFilePath; }
-
-            set 
-            {
-                openFilePath = value;
-                Text_InputFilePath.Text = openFilePath;
-            }
-        }
 
         /// <summary>
         /// Form constructor.
@@ -67,7 +58,15 @@ namespace DocumentBuilder.Forms
         /// </summary>
         private void Editor_TextChanged(object sender, EventArgs e)
         {
-            SyntaxHighlighting.Update(RichText_Editor);
+            this.SuspendLayout();
+
+            int currentFirstChar = RichText_Editor.GetFirstCharIndexOfCurrentLine();
+
+            int currentLine = RichText_Editor.GetLineFromCharIndex(currentFirstChar);
+
+            SyntaxHighlighting.Update(RichText_Editor, currentLine);
+
+            this.ResumeLayout();
 
             // Update document output.
             currentDocument = DocumentParser.ParseDocument(RichText_Editor.Lines);
@@ -88,7 +87,17 @@ namespace DocumentBuilder.Forms
         /// </summary>
         private void MenuItem_Open_Click(object sender, EventArgs e)
         {
-            OpenFilePath = FileManager.TryOpenFile(RichText_Editor, OpenFilePath);
+            string[] openedFileLinens = FileManager.TryOpenFile(ref openFilePath);
+
+            if (openedFileLinens.Length > 0)
+                RichText_Editor.Lines = openedFileLinens;
+
+            // Update document output.
+            currentDocument = DocumentParser.ParseDocument(RichText_Editor.Lines);
+
+            Text_Viewer.Lines = ViewRenderer.RenderViewerOutput(currentDocument.GetPage((int)Number_Page.Value - 1));
+
+            SyntaxHighlighting.UpdateAll(RichText_Editor);
         }
 
         /// <summary>
@@ -105,7 +114,7 @@ namespace DocumentBuilder.Forms
         /// </summary>
         private void MenuItem_Save_Click(object sender, EventArgs e)
         {
-            OpenFilePath = FileManager.TrySaveFile(OpenFilePath, RichText_Editor.Lines);
+            FileManager.TrySaveFile(ref openFilePath, RichText_Editor.Lines);
         }
 
         /// <summary>
@@ -113,7 +122,7 @@ namespace DocumentBuilder.Forms
         /// </summary>
         private void MenuItem_SaveAs_Click(object sender, EventArgs e)
         {
-            OpenFilePath = FileManager.SaveFileAs(OpenFilePath, RichText_Editor.Lines);
+            FileManager.SaveFileAs(ref openFilePath, RichText_Editor.Lines);
         }
 
         /// <summary>

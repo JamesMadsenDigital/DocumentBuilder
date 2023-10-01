@@ -41,7 +41,6 @@
             this.MenuItem_About = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.Group_EditorControls = new System.Windows.Forms.GroupBox();
-            this.Text_InputFilePath = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.RichText_Editor = new System.Windows.Forms.RichTextBox();
             this.Text_Viewer = new System.Windows.Forms.TextBox();
@@ -57,7 +56,6 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.Group_EditorControls.SuspendLayout();
             this.Group_ViewControls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Number_FontSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Number_Page)).BeginInit();
@@ -177,22 +175,11 @@
             // 
             this.Group_EditorControls.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Group_EditorControls.Controls.Add(this.Text_InputFilePath);
             this.Group_EditorControls.Location = new System.Drawing.Point(3, 28);
             this.Group_EditorControls.Name = "Group_EditorControls";
             this.Group_EditorControls.Size = new System.Drawing.Size(793, 41);
             this.Group_EditorControls.TabIndex = 7;
             this.Group_EditorControls.TabStop = false;
-            // 
-            // Text_InputFilePath
-            // 
-            this.Text_InputFilePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Text_InputFilePath.Location = new System.Drawing.Point(8, 14);
-            this.Text_InputFilePath.Name = "Text_InputFilePath";
-            this.Text_InputFilePath.ReadOnly = true;
-            this.Text_InputFilePath.Size = new System.Drawing.Size(779, 20);
-            this.Text_InputFilePath.TabIndex = 1;
             // 
             // label1
             // 
@@ -352,8 +339,6 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.Group_EditorControls.ResumeLayout(false);
-            this.Group_EditorControls.PerformLayout();
             this.Group_ViewControls.ResumeLayout(false);
             this.Group_ViewControls.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Number_FontSize)).EndInit();
@@ -375,7 +360,6 @@
         private System.Windows.Forms.ToolStripMenuItem ListItem_ViewLogs;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.RichTextBox RichText_Editor;
-        private System.Windows.Forms.TextBox Text_InputFilePath;
         private System.Windows.Forms.Button Button_Export;
         private System.Windows.Forms.Label Label_View;
         private System.Windows.Forms.Label label1;
