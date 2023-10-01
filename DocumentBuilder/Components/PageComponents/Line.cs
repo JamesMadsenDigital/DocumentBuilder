@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DocumentBuilder.Builder
+namespace DocumentBuilder.Components
 {
     /// <summary>
     /// Represents a line from the document that contains components and/or text.

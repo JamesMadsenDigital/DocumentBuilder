@@ -46,12 +46,12 @@
             this.RichText_Editor = new System.Windows.Forms.RichTextBox();
             this.Text_Viewer = new System.Windows.Forms.TextBox();
             this.Group_ViewControls = new System.Windows.Forms.GroupBox();
+            this.Label_ViewerFontSize = new System.Windows.Forms.Label();
+            this.Number_FontSize = new System.Windows.Forms.NumericUpDown();
             this.Label_PageNumber = new System.Windows.Forms.Label();
             this.Number_Page = new System.Windows.Forms.NumericUpDown();
             this.Label_View = new System.Windows.Forms.Label();
             this.Button_Export = new System.Windows.Forms.Button();
-            this.Label_ViewerFontSize = new System.Windows.Forms.Label();
-            this.Number_FontSize = new System.Windows.Forms.NumericUpDown();
             this.MenuStrip_Main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -59,8 +59,8 @@
             this.splitContainer1.SuspendLayout();
             this.Group_EditorControls.SuspendLayout();
             this.Group_ViewControls.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Number_Page)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Number_FontSize)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Number_Page)).BeginInit();
             this.SuspendLayout();
             // 
             // MenuStrip_Main
@@ -247,48 +247,6 @@
             this.Group_ViewControls.TabIndex = 6;
             this.Group_ViewControls.TabStop = false;
             // 
-            // Label_PageNumber
-            // 
-            this.Label_PageNumber.AutoSize = true;
-            this.Label_PageNumber.Location = new System.Drawing.Point(6, 16);
-            this.Label_PageNumber.Name = "Label_PageNumber";
-            this.Label_PageNumber.Size = new System.Drawing.Size(32, 13);
-            this.Label_PageNumber.TabIndex = 6;
-            this.Label_PageNumber.Text = "Page";
-            // 
-            // Number_Page
-            // 
-            this.Number_Page.Location = new System.Drawing.Point(43, 13);
-            this.Number_Page.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.Number_Page.Name = "Number_Page";
-            this.Number_Page.Size = new System.Drawing.Size(54, 20);
-            this.Number_Page.TabIndex = 5;
-            this.Number_Page.ValueChanged += new System.EventHandler(this.Number_Page_ValueChanged);
-            // 
-            // Label_View
-            // 
-            this.Label_View.AutoSize = true;
-            this.Label_View.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_View.Location = new System.Drawing.Point(3, 9);
-            this.Label_View.Name = "Label_View";
-            this.Label_View.Size = new System.Drawing.Size(36, 16);
-            this.Label_View.TabIndex = 4;
-            this.Label_View.Text = "View";
-            // 
-            // Button_Export
-            // 
-            this.Button_Export.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_Export.Location = new System.Drawing.Point(641, 974);
-            this.Button_Export.Name = "Button_Export";
-            this.Button_Export.Size = new System.Drawing.Size(174, 32);
-            this.Button_Export.TabIndex = 4;
-            this.Button_Export.Text = "Export";
-            this.Button_Export.UseVisualStyleBackColor = true;
-            // 
             // Label_ViewerFontSize
             // 
             this.Label_ViewerFontSize.AutoSize = true;
@@ -321,6 +279,59 @@
             0});
             this.Number_FontSize.ValueChanged += new System.EventHandler(this.Number_FontSize_ValueChanged);
             // 
+            // Label_PageNumber
+            // 
+            this.Label_PageNumber.AutoSize = true;
+            this.Label_PageNumber.Location = new System.Drawing.Point(6, 16);
+            this.Label_PageNumber.Name = "Label_PageNumber";
+            this.Label_PageNumber.Size = new System.Drawing.Size(32, 13);
+            this.Label_PageNumber.TabIndex = 6;
+            this.Label_PageNumber.Text = "Page";
+            // 
+            // Number_Page
+            // 
+            this.Number_Page.Location = new System.Drawing.Point(43, 13);
+            this.Number_Page.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.Number_Page.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.Number_Page.Name = "Number_Page";
+            this.Number_Page.Size = new System.Drawing.Size(54, 20);
+            this.Number_Page.TabIndex = 5;
+            this.Number_Page.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.Number_Page.ValueChanged += new System.EventHandler(this.Number_Page_ValueChanged);
+            // 
+            // Label_View
+            // 
+            this.Label_View.AutoSize = true;
+            this.Label_View.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_View.Location = new System.Drawing.Point(3, 9);
+            this.Label_View.Name = "Label_View";
+            this.Label_View.Size = new System.Drawing.Size(36, 16);
+            this.Label_View.TabIndex = 4;
+            this.Label_View.Text = "View";
+            // 
+            // Button_Export
+            // 
+            this.Button_Export.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_Export.Location = new System.Drawing.Point(641, 974);
+            this.Button_Export.Name = "Button_Export";
+            this.Button_Export.Size = new System.Drawing.Size(174, 32);
+            this.Button_Export.TabIndex = 4;
+            this.Button_Export.Text = "Export";
+            this.Button_Export.UseVisualStyleBackColor = true;
+            this.Button_Export.Click += new System.EventHandler(this.Button_Export_Click);
+            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -345,8 +356,8 @@
             this.Group_EditorControls.PerformLayout();
             this.Group_ViewControls.ResumeLayout(false);
             this.Group_ViewControls.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Number_Page)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Number_FontSize)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Number_Page)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using DocumentBuilder.Forms.MainForm;
-using DocumentBuilder.Debug;
+using DocumentBuilder.Editing;
 
-namespace DocumentBuilder.Builder
+namespace DocumentBuilder.Components
 {
     internal static class ComponentManager
     {
@@ -84,7 +79,7 @@ namespace DocumentBuilder.Builder
         public static void UpdateSyntaxHighlighting()
         {
             foreach(var component in pageComponents)
-                KeyWords.AddByColor(component.name, component.syntaxColor);
+                KeywordManager.AddByColor(component.name, component.syntaxColor);
         }
 
         /// <summary>

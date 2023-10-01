@@ -1,17 +1,11 @@
-﻿using DocumentBuilder.Builder;
-using DocumentBuilder.Forms.DocumentationForm;
-using DocumentBuilder.Forms.MainForm;
-using DocumentBuilder.FileManagement;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
+using DocumentBuilder.FileManagement;
+using DocumentBuilder.Components;
+using DocumentBuilder.Parsing;
+using DocumentBuilder.Rendering;
+using DocumentBuilder.Editing;
 
 namespace DocumentBuilder.Forms
 {
@@ -78,9 +72,7 @@ namespace DocumentBuilder.Forms
             // Update document output.
             currentDocument = DocumentParser.ParseDocument(RichText_Editor.Lines);
 
-            string[] renderedDocument = OutputRenderer.RenderDocument(currentDocument.GetPage((int)Number_Page.Value));
-
-            Text_Viewer.Lines = OutputRenderer.GetFormattedOutput(currentDocument.GetPage((int)Number_Page.Value), renderedDocument);
+            Text_Viewer.Lines = ViewRenderer.RenderViewerOutput(currentDocument.GetPage((int)Number_Page.Value - 1));
         }
 
         /// <summary>
@@ -88,7 +80,7 @@ namespace DocumentBuilder.Forms
         /// </summary>
         private void Number_Page_ValueChanged(object sender, EventArgs e)
         {
-            Text_Viewer.Lines = OutputRenderer.RenderDocument(currentDocument.GetPage((int)Number_Page.Value));
+            Text_Viewer.Lines = ViewRenderer.RenderViewerOutput(currentDocument.GetPage((int)Number_Page.Value - 1));
         }
 
         /// <summary>
@@ -113,7 +105,7 @@ namespace DocumentBuilder.Forms
         /// </summary>
         private void MenuItem_Save_Click(object sender, EventArgs e)
         {
-            OpenFilePath = FileManager.TrySaveFile(RichText_Editor.Lines, OpenFilePath);
+            OpenFilePath = FileManager.TrySaveFile(OpenFilePath, RichText_Editor.Lines);
         }
 
         /// <summary>
@@ -132,6 +124,14 @@ namespace DocumentBuilder.Forms
             int fontSize = (int)Number_FontSize.Value;
 
             Text_Viewer.Font = new Font(Text_Viewer.Font.FontFamily, fontSize);
+        }
+
+        /// <summary>
+        /// Opens the export dialog.
+        /// </summary>
+        private void Button_Export_Click(object sender, EventArgs e)
+        {
+            Form_Export.ShowExportForm(currentDocument);
         }
     }
 }

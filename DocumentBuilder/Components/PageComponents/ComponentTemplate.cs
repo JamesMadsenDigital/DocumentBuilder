@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 
-namespace DocumentBuilder.Builder
+namespace DocumentBuilder.Components
 {
     /// <summary>
     /// Template for a component.

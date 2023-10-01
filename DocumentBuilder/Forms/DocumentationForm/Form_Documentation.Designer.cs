@@ -1,4 +1,4 @@
-﻿namespace DocumentBuilder.Forms.DocumentationForm
+﻿namespace DocumentBuilder.Forms
 {
     partial class Form_Documentation
     {
@@ -131,8 +131,8 @@
             // 
             // Panel_Documentation
             // 
-            this.Panel_Documentation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.Panel_Documentation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Panel_Documentation.AutoScroll = true;
             this.Panel_Documentation.BackColor = System.Drawing.SystemColors.ButtonHighlight;

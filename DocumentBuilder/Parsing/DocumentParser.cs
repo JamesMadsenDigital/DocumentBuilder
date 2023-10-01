@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using DocumentBuilder.Debug;
+using DocumentBuilder.Components;
 
-namespace DocumentBuilder.Builder
+namespace DocumentBuilder.Parsing
 {
     /// <summary>
     /// Handles parsing of document from string array to array of lines and components.

@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Text.RegularExpressions;
-using System.Runtime.CompilerServices;
-using DocumentBuilder.Debug;
-using DocumentBuilder.Builder;
+using DocumentBuilder.Parsing;
 
-namespace DocumentBuilder.Forms.MainForm
+namespace DocumentBuilder.Editing
 {
     internal static class SyntaxHighlighting
     {
@@ -79,7 +73,7 @@ namespace DocumentBuilder.Forms.MainForm
 
                 int tokenIndex = componentIndex + tokenMatch.Index;
 
-                KeywordGroup keywordGroup = KeyWords.KeywordMatch(token);
+                KeywordGroup keywordGroup = KeywordManager.KeywordMatch(token);
 
                 Color tokenColor = Color.Red;
 
@@ -115,98 +109,6 @@ namespace DocumentBuilder.Forms.MainForm
 
             textBox.Select(textBox.GetFirstCharIndexFromLine(currentLineIndex), currentLineLength);
             textBox.SelectionColor = color;
-        }
-    }
-
-    /// <summary>
-    /// Manages coloring of keywords.
-    /// </summary>
-    internal static class KeyWords
-    {
-        // List of keywords and their colorings.
-        private static List<KeywordGroup> keywordGroups = new List<KeywordGroup>
-        {
-            // Properties
-            new KeywordGroup
-            (
-                new List<string>
-                {
-                    "Alignment",
-                    "Width",
-                    "Height",
-                    "SpanChar",
-                    "X",
-                    "Y",
-                },
-
-                Color.PaleVioletRed
-            ),
-
-            // Alignments
-            new KeywordGroup
-            (
-                new List<string>
-                {
-                    "Left",
-                    "Right"
-                },
-                
-                Color.LightSeaGreen
-            )
-        };
-
-        /// <summary>
-        /// Adds a keyword to the list based on color. Creates new group if none exist for color.
-        /// </summary>
-        public static void AddByColor(string keywordName, Color keywordColor)
-        {
-            KeywordGroup existingGroup = keywordGroups.Find(x => x.keywordColor == keywordColor);
-
-            if (existingGroup == null)
-            {
-                keywordGroups.Add(new KeywordGroup(new List<string> { keywordName }, keywordColor));
-                return;
-            }
-
-            existingGroup.keywords.Add(keywordName);
-        }
-
-        /// <summary>
-        /// Returns a keyword group if the inputted keyword matches one in a group.
-        /// </summary>
-        public static KeywordGroup KeywordMatch(string keyword)
-        {
-            foreach( KeywordGroup keywordGroup in keywordGroups )
-                if(keywordGroup.HasKeyword(keyword)) return keywordGroup;
-
-            return null;
-        }
-    }
-
-    /// <summary>
-    /// Group of keywords that are highlighted with a given color.
-    /// </summary>
-    internal class KeywordGroup
-    {
-        public List<string> keywords = new List<string>();
-
-        public Color keywordColor = Color.Black;
-
-        /// <summary>
-        /// Parameterized constructor for a KeywordGroup.
-        /// </summary>
-        public KeywordGroup(List<string> keywords, Color keywordColor)
-        {
-            this.keywords = keywords;
-            this.keywordColor = keywordColor;
-        }
-
-        /// <summary>
-        /// Returns true if this group contains a keyword.
-        /// </summary>
-        public bool HasKeyword(string keyword)
-        {
-            return keywords.Contains(keyword);
         }
     }
 }

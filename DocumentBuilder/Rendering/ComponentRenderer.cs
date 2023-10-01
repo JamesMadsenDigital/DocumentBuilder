@@ -1,13 +1,8 @@
-﻿using DocumentBuilder.Builder;
+﻿using System.Text.RegularExpressions;
 using DocumentBuilder.Debug;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using DocumentBuilder.Components;
 
-namespace DocumentBuilder
+namespace DocumentBuilder.Rendering
 {
     internal static class ComponentRenderer
     {

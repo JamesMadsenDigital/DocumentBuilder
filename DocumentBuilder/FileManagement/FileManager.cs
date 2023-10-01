@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
-using System.Runtime.CompilerServices;
 using DocumentBuilder.Debug;
 
 namespace DocumentBuilder.FileManagement
@@ -16,9 +11,29 @@ namespace DocumentBuilder.FileManagement
     internal static class FileManager
     {
         /// <summary>
+        /// Creates and writes a file.
+        /// </summary>
+        public static void CreateFile(string path, string[] lines)
+        {
+            try
+            {
+                File.WriteAllLines(path, lines);
+            }
+            catch(Exception e)
+            {
+                Logs.LogErrorMessage($"Error saving file {path}: " + e.Message);
+
+                string caption = "Error";
+                string message = $"Error saving file {path}: " + e.Message;
+
+                MessageBox.Show(message, caption, MessageBoxButtons.OK);
+            }
+        }
+
+        /// <summary>
         /// Tries to save a file at the path specified. Can be .dml or .txt.
         /// </summary>
-        public static string TrySaveFile(string[] lines, string path)
+        public static string TrySaveFile(string path, string[] lines)
         {
             // Prompt user to save file if it doesn't currently exist.
             if (!File.Exists(path))
@@ -157,6 +172,22 @@ namespace DocumentBuilder.FileManagement
             }
 
             return currentPath;
+        }
+
+
+        /// <summary>
+        /// Opens a directory selection dialog, and returns the selected path.
+        /// </summary>
+        public static string SelectDirectory(string currentDirectory)
+        {
+             FolderBrowserDialog selectFolderDialog = new FolderBrowserDialog();
+
+            if(selectFolderDialog.ShowDialog() == DialogResult.OK)
+            {
+                return selectFolderDialog.SelectedPath;
+            }
+
+            return currentDirectory;
         }
     }
 }
