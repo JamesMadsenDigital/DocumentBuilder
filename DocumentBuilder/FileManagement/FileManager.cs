@@ -33,7 +33,7 @@ namespace DocumentBuilder.FileManagement
         /// <summary>
         /// Tries to save a file at the path specified. Can be .dml or .txt.
         /// </summary>
-        public static string TrySaveFile(string path, string[] lines)
+        public static void TrySaveFile(ref string path, string[] lines)
         {
             // Prompt user to save file if it doesn't currently exist.
             if (!File.Exists(path))
@@ -53,6 +53,8 @@ namespace DocumentBuilder.FileManagement
                         Logs.LogUserMessage($"Saving file to {Path.GetFullPath(saveFileDialog.FileName)}");
 
                         File.WriteAllLines(Path.GetFullPath(saveFileDialog.FileName), lines);
+
+                        path = Path.GetFullPath(saveFileDialog.FileName);
                     }
                     catch(Exception e)
                     {
@@ -62,14 +64,8 @@ namespace DocumentBuilder.FileManagement
                         string message = "Error saving file: " + e.Message;
 
                         MessageBox.Show(message, caption, MessageBoxButtons.OK);
-
-                        return path;
                     }
-
-                    return Path.GetFullPath(saveFileDialog.FileName);
                 }
-
-                return path;
             }
 
             // If the file already exists, write over it.
@@ -78,8 +74,6 @@ namespace DocumentBuilder.FileManagement
                 Logs.LogUserMessage($"Saving file to {path}");
 
                 File.WriteAllLines(path, lines);
-
-                return path;
             }
             catch(Exception e)
             {
@@ -89,15 +83,13 @@ namespace DocumentBuilder.FileManagement
                 string message = "Error saving file: " + e.Message;
 
                 MessageBox.Show(message, caption, MessageBoxButtons.OK);
-
-                return path;
             }
         }      
 
         /// <summary>
         /// Saves a file that may or may not already exist, with a new name/path.
         /// </summary>
-        public static string SaveFileAs(string currentPath, string[] lines)
+        public static void SaveFileAs(ref string currentPath, string[] lines)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
 
@@ -115,7 +107,7 @@ namespace DocumentBuilder.FileManagement
 
                     File.WriteAllLines(Path.GetFullPath(saveFileDialog.FileName), lines);
 
-                    return Path.GetFullPath(saveFileDialog.FileName);
+                    currentPath = Path.GetFullPath(saveFileDialog.FileName);
                 }
                 catch (Exception e)
                 {
@@ -124,20 +116,14 @@ namespace DocumentBuilder.FileManagement
                     string message = "Error saving file: " + e.Message;
 
                     MessageBox.Show(message, caption, MessageBoxButtons.OK);
-
-                    return currentPath;
                 }
-
-                return Path.GetFullPath(saveFileDialog.FileName);
             }
-
-            return currentPath;
         }
 
         /// <summary>
         /// Tries to open a file, and returns an empty string array if it can't
         /// </summary>
-        public static string TryOpenFile(RichTextBox textBox, string currentPath)
+        public static string[] TryOpenFile(ref string currentPath)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
@@ -151,13 +137,13 @@ namespace DocumentBuilder.FileManagement
             {
                 try
                 {
-                    textBox.Lines = File.ReadAllLines(openFileDialog.FileName);
+                    string[] lines = File.ReadAllLines(openFileDialog.FileName);
 
                     currentPath = Path.GetFullPath(openFileDialog.FileName);
 
                     Logs.LogUserMessage($"Opened {currentPath}");
 
-                    return currentPath;
+                    return lines;
                 }
                 catch(Exception e)
                 {
@@ -167,11 +153,11 @@ namespace DocumentBuilder.FileManagement
 
                     MessageBox.Show(message, caption, MessageBoxButtons.OK);
 
-                    return currentPath;
+                    return new string[0];
                 }
             }
 
-            return currentPath;
+            return new string[0];
         }
 
 
