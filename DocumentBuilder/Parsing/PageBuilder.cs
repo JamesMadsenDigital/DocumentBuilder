@@ -1,11 +1,7 @@
-﻿using DocumentBuilder.Debug;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using DocumentBuilder.Components;
 
-namespace DocumentBuilder.Builder
+namespace DocumentBuilder.Parsing
 {
     internal static class PageBuilder
     {

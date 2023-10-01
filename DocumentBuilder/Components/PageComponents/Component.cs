@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
-using DocumentBuilder.Debug;
-using System.Xml.Schema;
-using System.Configuration;
+﻿using System.Collections.Generic;
 
-namespace DocumentBuilder.Builder
+namespace DocumentBuilder.Components
 {
     /// <summary>
     /// Class that desribes a component that is drawn to the page.

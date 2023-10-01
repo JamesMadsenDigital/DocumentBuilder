@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DocumentBuilder.Builder
+namespace DocumentBuilder.Components
 {
     /// <summary>
     /// Container for parsed document.

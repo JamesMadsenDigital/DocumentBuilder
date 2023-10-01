@@ -1,11 +1,7 @@
-﻿using DocumentBuilder.Debug;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using DocumentBuilder.Components;
 
-namespace DocumentBuilder.Builder
+namespace DocumentBuilder.Parsing
 {
     internal static class ContainerBuilder
     {
@@ -62,28 +58,6 @@ namespace DocumentBuilder.Builder
             }
 
             return -1;
-        }
-
-        /// <summary>
-        /// Removes lines that are not inside of a container.
-        /// </summary>
-        /// <param name="page"></param>
-        private static void TrimLines(ref Page page)
-        {
-            List<int> containerLines = new List<int>();
-
-            foreach(Container container in page.containers)
-                foreach (int containerLine in container.lines)
-                    containerLines.Add(containerLine);
-
-            for(int i = 0; i < page.lines.Count; i++)
-            {
-                if (!containerLines.Contains(i))
-                {
-                    Logs.LogDebugMessage($"Removing line at {i}.");
-                    page.lines.RemoveAt(i);
-                }
-            }
         }
 
         /// <summary>

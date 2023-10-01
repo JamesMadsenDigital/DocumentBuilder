@@ -78,19 +78,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Builder\Component\Component.cs" />
-    <Compile Include="Builder\Component\ComponentManager.cs" />
-    <Compile Include="Builder\Component\ComponentTemplate.cs" />
-    <Compile Include="Builder\Component\Container.cs" />
-    <Compile Include="Builder\Component\Line.cs" />
-    <Compile Include="Builder\Document\Page.cs" />
-    <Compile Include="Builder\Document\Document.cs" />
-    <Compile Include="Builder\Parsing\ContainerBuilder.cs" />
-    <Compile Include="Builder\Parsing\DocumentDebug.cs" />
-    <Compile Include="Builder\Parsing\PageBuilder.cs" />
-    <Compile Include="Builder\Rendering\ComponentRenderer.cs" />
-    <Compile Include="Builder\Rendering\OutputRenderer.cs" />
-    <Compile Include="Builder\Parsing\DocumentParser.cs" />
+    <Compile Include="Components\PageComponents\Component.cs" />
+    <Compile Include="Components\PageComponents\ComponentManager.cs" />
+    <Compile Include="Components\PageComponents\ComponentTemplate.cs" />
+    <Compile Include="Components\PageComponents\Container.cs" />
+    <Compile Include="Components\PageComponents\Line.cs" />
+    <Compile Include="Components\Page.cs" />
+    <Compile Include="Components\Document.cs" />
+    <Compile Include="Editing\KeywordGroup.cs" />
+    <Compile Include="Editing\KeywordManager.cs" />
+    <Compile Include="Output\DocumentOutput.cs" />
+    <Compile Include="Parsing\ContainerBuilder.cs" />
+    <Compile Include="Parsing\PageBuilder.cs" />
+    <Compile Include="Rendering\ComponentRenderer.cs" />
+    <Compile Include="Parsing\DocumentParser.cs" />
+    <Compile Include="Rendering\ViewRenderer.cs" />
+    <Compile Include="Export\TextExport.cs" />
     <Compile Include="FileManagement\FileManager.cs" />
     <Compile Include="Forms\AboutForm\Form_About.cs">
       <SubType>Form</SubType>
@@ -116,7 +119,7 @@
     <Compile Include="Forms\LogViewerForm\Form_LogViewer.Designer.cs">
       <DependentUpon>Form_LogViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\MainForm\Editor\SyntaxHighlighting.cs" />
+    <Compile Include="Editing\SyntaxHighlighting.cs" />
     <Compile Include="Forms\MainForm\Form_Main.cs">
       <SubType>Form</SubType>
     </Compile>
