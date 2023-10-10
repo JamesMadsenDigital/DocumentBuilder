@@ -49,16 +49,13 @@ namespace DocumentBuilder.Forms
         /// Opens portfolio page in web browser.
         /// </summary>
         private void Link_Portfolio_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://www.jamesmadsendigital.com/documentbuilder");
-        }
+        => System.Diagnostics.Process.Start("https://www.jamesmadsendigital.com/documentbuilder");
+        
 
         /// <summary>
         /// Opens GitHub repository in web browser.
         /// </summary>
         private void Link_GitHub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://github.com/JamesMadsenDigital/DocumentBuilder.git");
-        }
+        => System.Diagnostics.Process.Start("https://github.com/JamesMadsenDigital/DocumentBuilder.git");
     }
 }

@@ -8,7 +8,9 @@ namespace DocumentBuilder.Output
     /// </summary>
     internal static class DocumentOutput
     {
-
+        /// <summary>
+        /// Outputs page contents to a string array.
+        /// </summary>
         public static string[] GetPage(Page page)
         {
             if (page == null)

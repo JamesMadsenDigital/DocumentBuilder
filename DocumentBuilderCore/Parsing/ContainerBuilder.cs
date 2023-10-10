@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using DocumentBuilder.Components;
 
-namespace DocumentBuilder.Parsing
+namespace DocumentBuilderCore.Parsing
 {
     internal static class ContainerBuilder
     {
@@ -71,7 +71,9 @@ namespace DocumentBuilder.Parsing
             List<int> lineIndexes = new List<int>();    
 
             for(int i = startIndex; i < endIndex; i++)
+            {
                 lineIndexes.Add(i);
+            }
 
             return lineIndexes;
         }

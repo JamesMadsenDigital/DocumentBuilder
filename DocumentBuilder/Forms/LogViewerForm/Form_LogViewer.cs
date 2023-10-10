@@ -60,17 +60,13 @@ namespace DocumentBuilder.Forms
         /// Called on form load.
         /// </summary>
         private void Form_LogViewer_Load(object sender, EventArgs e)
-        {
-            LoadLogs();
-        }
+        => LoadLogs();
 
         /// <summary>
         /// Clears logs.
         /// </summary>
         private void Button_ClearLogs_Click(object sender, EventArgs e)
-        {
-            Debug.Logs.ClearLogs();
-        }
+        => Debug.Logs.ClearLogs();
 
         /// <summary>
         /// Refre

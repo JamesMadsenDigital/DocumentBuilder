@@ -30,30 +30,6 @@ namespace DocumentBuilder.Forms
         }
 
         /// <summary>
-        /// Called when 'about' menu item is clicked.
-        /// </summary>
-        private void MenuItem_About_Click(object sender, EventArgs e)
-        {
-            Form_About.ShowAboutForm();
-        }
-
-        /// <summary>
-        /// Called on form load.
-        /// </summary>
-        private void Form_Main_Load(object sender, EventArgs e)
-        {
-            ComponentManager.UpdateSyntaxHighlighting();
-        }
-
-        /// <summary>
-        /// Called when 'view logs' menu item is clicked.
-        /// </summary>
-        private void ListItem_ViewLogs_Click(object sender, EventArgs e)
-        {
-            Form_LogViewer.ShowLogViewerForm();
-        }
-
-        /// <summary>
         /// Updates syntax highlighting whenever the editor's text is changed.
         /// </summary>
         private void Editor_TextChanged(object sender, EventArgs e)
@@ -78,9 +54,8 @@ namespace DocumentBuilder.Forms
         /// When the page number in the viewer is changed.
         /// </summary>
         private void Number_Page_ValueChanged(object sender, EventArgs e)
-        {
-            Text_Viewer.Lines = ViewRenderer.RenderViewerOutput(currentDocument.GetPage((int)Number_Page.Value - 1));
-        }
+        => Text_Viewer.Lines = ViewRenderer.RenderViewerOutput(currentDocument.GetPage((int)Number_Page.Value - 1));
+        
 
         /// <summary>
         /// Opens a new DML or Text File.
@@ -97,32 +72,7 @@ namespace DocumentBuilder.Forms
 
             Text_Viewer.Lines = ViewRenderer.RenderViewerOutput(currentDocument.GetPage((int)Number_Page.Value - 1));
 
-            SyntaxHighlighting.UpdateAll(RichText_Editor);
-        }
-
-        /// <summary>
-        /// Shows the documentation form when menu item is clicked.
-        /// </summary>
-        private void ListItem_ShowDocumentation_Click(object sender, EventArgs e)
-        {
-            Form_Documentation.ShowLogViewerForm();
-        }
-
-        /// <summary>
-        /// Saves the current file, or prompts the user to save it as a new file if 
-        /// it doesn't exist.
-        /// </summary>
-        private void MenuItem_Save_Click(object sender, EventArgs e)
-        {
-            FileManager.TrySaveFile(ref openFilePath, RichText_Editor.Lines);
-        }
-
-        /// <summary>
-        /// Saves a file as new.
-        /// </summary>
-        private void MenuItem_SaveAs_Click(object sender, EventArgs e)
-        {
-            FileManager.SaveFileAs(ref openFilePath, RichText_Editor.Lines);
+            SyntaxHighlighting.UpdateAll(RichText_Editor, Progress_Import);
         }
 
         /// <summary>
@@ -136,11 +86,46 @@ namespace DocumentBuilder.Forms
         }
 
         /// <summary>
+        /// Called when 'about' menu item is clicked.
+        /// </summary>
+        private void MenuItem_About_Click(object sender, EventArgs e)
+        => Form_About.ShowAboutForm();
+
+        /// <summary>
+        /// Called on form load.
+        /// </summary>
+        private void Form_Main_Load(object sender, EventArgs e)
+        => ComponentManager.UpdateSyntaxHighlighting();
+
+        /// <summary>
+        /// Called when 'view logs' menu item is clicked.
+        /// </summary>
+        private void ListItem_ViewLogs_Click(object sender, EventArgs e)
+        => Form_LogViewer.ShowLogViewerForm();
+
+        /// <summary>
+        /// Shows the documentation form when menu item is clicked.
+        /// </summary>
+        private void ListItem_ShowDocumentation_Click(object sender, EventArgs e)
+        => Form_Documentation.ShowLogViewerForm();
+   
+        /// <summary>
+        /// Saves the current file, or prompts the user to save it as a new file if 
+        /// it doesn't exist.
+        /// </summary>
+        private void MenuItem_Save_Click(object sender, EventArgs e)
+        => FileManager.TrySaveFile(ref openFilePath, RichText_Editor.Lines);
+
+        /// <summary>
+        /// Saves a file as new.
+        /// </summary>
+        private void MenuItem_SaveAs_Click(object sender, EventArgs e)
+        => FileManager.SaveFileAs(ref openFilePath, RichText_Editor.Lines);
+
+        /// <summary>
         /// Opens the export dialog.
         /// </summary>
         private void Button_Export_Click(object sender, EventArgs e)
-        {
-            Form_Export.ShowExportForm(currentDocument);
-        }
+        => Form_Export.ShowExportForm(currentDocument);
     }
 }

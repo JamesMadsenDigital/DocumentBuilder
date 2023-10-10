@@ -51,11 +51,13 @@
             this.Number_Page = new System.Windows.Forms.NumericUpDown();
             this.Label_View = new System.Windows.Forms.Label();
             this.Button_Export = new System.Windows.Forms.Button();
+            this.Progress_Import = new System.Windows.Forms.ProgressBar();
             this.MenuStrip_Main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.Group_EditorControls.SuspendLayout();
             this.Group_ViewControls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Number_FontSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Number_Page)).BeginInit();
@@ -175,6 +177,7 @@
             // 
             this.Group_EditorControls.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.Group_EditorControls.Controls.Add(this.Progress_Import);
             this.Group_EditorControls.Location = new System.Drawing.Point(3, 28);
             this.Group_EditorControls.Name = "Group_EditorControls";
             this.Group_EditorControls.Size = new System.Drawing.Size(793, 41);
@@ -319,6 +322,13 @@
             this.Button_Export.UseVisualStyleBackColor = true;
             this.Button_Export.Click += new System.EventHandler(this.Button_Export_Click);
             // 
+            // Progress_Import
+            // 
+            this.Progress_Import.Location = new System.Drawing.Point(6, 12);
+            this.Progress_Import.Name = "Progress_Import";
+            this.Progress_Import.Size = new System.Drawing.Size(781, 23);
+            this.Progress_Import.TabIndex = 0;
+            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -339,6 +349,7 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.Group_EditorControls.ResumeLayout(false);
             this.Group_ViewControls.ResumeLayout(false);
             this.Group_ViewControls.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Number_FontSize)).EndInit();
@@ -372,6 +383,7 @@
         private System.Windows.Forms.ToolStripMenuItem MenuItem_SaveAs;
         private System.Windows.Forms.Label Label_ViewerFontSize;
         private System.Windows.Forms.NumericUpDown Number_FontSize;
+        private System.Windows.Forms.ProgressBar Progress_Import;
     }
 }
 

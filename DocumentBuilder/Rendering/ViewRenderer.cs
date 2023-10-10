@@ -35,10 +35,11 @@ namespace DocumentBuilder.Rendering
         {
             string span = "    ";
 
-            for (int i = 0; i < page.width; i++)
+            // Spans will be two characters wider than the page they contain.
+            for (int i = 0; i < page.width + 2; i++)
                 span += '*';
 
-            return span + "**";
+            return span;
         }
     }
 }
