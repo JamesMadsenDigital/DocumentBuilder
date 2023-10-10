@@ -13,16 +13,21 @@ namespace DocumentBuilder.Editing
         /// </summary>
         public static void Update(RichTextBox textBox, int lineIndex)
         {
+
+
+
             // Get current line.
             textBox.WordWrap = false;
             int cursorPosition = textBox.SelectionStart;
             int firstCharIndex = textBox.GetFirstCharIndexFromLine(lineIndex);
 
+            if (textBox.Lines.Length < 1)
+                return;
+
             // Text of the current line.
             string currentLine = textBox.Lines[lineIndex];
 
             Debug.Logs.LogDebugMessage($"Updating line {lineIndex}: {currentLine}");
-
 
             // Color entire line for comments. Reset color if not a comment.
             if (DocumentParser.IsComment(currentLine))
@@ -96,6 +101,9 @@ namespace DocumentBuilder.Editing
             textBox.SelectionColor = Color.Black;
         }
 
+
+
+
         /// <summary>
         /// Changes the color of an entire line in the text box.
         /// </summary>
@@ -104,18 +112,27 @@ namespace DocumentBuilder.Editing
             int currentLineLength = textBox.Lines[currentLineIndex].Length;
 
             textBox.Select(textBox.GetFirstCharIndexFromLine(currentLineIndex), currentLineLength);
+
             textBox.SelectionColor = color;
         }
 
         /// <summary>
         /// Updates all syntax highlighting in the textbox.
         /// </summary>
-        public static void UpdateAll(RichTextBox textBox)
+        public static void UpdateAll(RichTextBox textBox, ProgressBar progressBar)
         {
+            progressBar.Maximum = textBox.Lines.Length;
+
             Debug.Logs.LogDebugMessage("Updating all syntax highlighting.");
 
             for(int i = 0; i < textBox.Lines.Length; i++)
+            {
+                progressBar.Value = i;
+
                 Update(textBox, i);
+            }
+
+            progressBar.Value = 0;
         }
     }
 }

@@ -74,9 +74,8 @@ namespace DocumentBuilder.Forms
         }
 
         /// <summary>
-        /// Validates that 
+        /// Validates all relevant export settings and enables/disables export button.
         /// </summary>
-        /// <returns></returns>
         private void ValidateExportSettings()
         {
             bool documentExists = document != null;
@@ -154,10 +153,8 @@ namespace DocumentBuilder.Forms
         /// Cancels export and closes form.
         /// </summary>
         private void Button_CancelExport_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
+        => Close();
+        
         /// <summary>
         /// Exports selected pages to output directory.
         /// </summary>
@@ -184,24 +181,20 @@ namespace DocumentBuilder.Forms
         /// Validates export settings every time the document name is updated.
         /// </summary>
         private void Text_DocumentName_TextChanged(object sender, EventArgs e)
-        {
-            ValidateExportSettings();
-        }
+        => ValidateExportSettings();
+        
 
         /// <summary>
         /// Opens a directory selection dialog.
         /// </summary>
         private void Button_SelectExportDirectory_Click(object sender, EventArgs e)
-        {
-            Text_ExportLocation.Text = FileManager.SelectDirectory(Text_ExportLocation.Text);
-        }
+        => Text_ExportLocation.Text = FileManager.SelectDirectory(Text_ExportLocation.Text);
+
 
         /// <summary>
         /// Validates export settings whenever the export folder is changed.
         /// </summary>
         private void Text_ExportLocation_TextChanged(object sender, EventArgs e)
-        {
-            ValidateExportSettings();
-        }
+        => ValidateExportSettings();
     }
 }
