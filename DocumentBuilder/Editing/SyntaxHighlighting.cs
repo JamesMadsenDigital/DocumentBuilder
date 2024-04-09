@@ -1,15 +1,18 @@
-﻿using System.Collections.Generic;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using System.Drawing;
 using System.Text.RegularExpressions;
 using DocumentBuilder.Parsing;
 
 namespace DocumentBuilder.Editing
 {
+    /// <summary>
+    /// Manages syntax highlighting in the editor textbox.
+    /// </summary>
     internal static class SyntaxHighlighting
     {
         /// <summary>
         /// Updates the syntax highlighting on the editor textbox.
+        /// Called whenever textbox contents change.
         /// </summary>
         public static void Update(RichTextBox textBox, int lineIndex)
         {
@@ -20,9 +23,6 @@ namespace DocumentBuilder.Editing
 
             // Text of the current line.
             string currentLine = textBox.Lines[lineIndex];
-
-            Debug.Logs.LogDebugMessage($"Updating line {lineIndex}: {currentLine}");
-
 
             // Color entire line for comments. Reset color if not a comment.
             if (DocumentParser.IsComment(currentLine))
@@ -60,10 +60,26 @@ namespace DocumentBuilder.Editing
 
             textBox.SelectionColor = Color.LightGray;
 
+            // Color all tokens on the line.
+            ColorTokens(ref textBox, component, componentIndex);
+
+            // Color all numeric characters within a valid component declaration.
+            ColorNumbers(ref textBox, component, componentIndex);
+        
+            // Reset selection and color.
+            textBox.Select(cursorPosition, 0);
+            textBox.SelectionColor = Color.Black;
+        }
+
+        /// <summary>
+        /// Colors all tokens on a line using the appropriate keyword color.
+        /// </summary>
+        private static void ColorTokens(ref RichTextBox textBox, string component, int componentIndex)
+        {
             // Match all word characters.
             Regex tokens = new Regex(@"[a-zA-Z]*");
 
-            foreach (Match tokenMatch in tokens.Matches(component))
+            foreach(Match tokenMatch in tokens.Matches(component))
             {
                 string token = tokenMatch.Value;
 
@@ -79,7 +95,13 @@ namespace DocumentBuilder.Editing
                 textBox.Select(tokenIndex, token.Length);
                 textBox.SelectionColor = tokenColor;
             }
+        }
 
+        /// <summary>
+        /// Colors all numeric characters on a line (contained within a component declaration).
+        /// </summary>
+        private static void ColorNumbers(ref RichTextBox textBox, string component, int componentIndex)
+        {
             // Match all numeric characters.
             Regex numericChars = new Regex("[0-9]*");
 
@@ -90,10 +112,6 @@ namespace DocumentBuilder.Editing
                 textBox.Select(numericIndex, numericMatch.Value.Length);
                 textBox.SelectionColor = Color.Purple;
             }
-            
-            // Reset selection and color.
-            textBox.Select(cursorPosition, 0);
-            textBox.SelectionColor = Color.Black;
         }
 
         /// <summary>

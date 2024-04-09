@@ -4,12 +4,15 @@ using DocumentBuilder.Editing;
 
 namespace DocumentBuilder.Components
 {
+    /// <summary>
+    /// Manages a list of component templates.
+    /// </summary>
     internal static class ComponentManager
     {
         // List of available components.
         private static List<ComponentTemplate> pageComponents = new List<ComponentTemplate>
         {
-            // Pages.
+            // Page / EndPage.
             new ComponentTemplate
             (
                 "Page", 
@@ -24,10 +27,10 @@ namespace DocumentBuilder.Components
             (
                 "EndPage",
                 Color.Blue,
-                new Dictionary<string, object>{}
+                new Dictionary<string, object>{ }
             ),
 
-            // Containers.
+            // Container / EndContainer.
             new ComponentTemplate
             (
                 "Container",
@@ -44,10 +47,7 @@ namespace DocumentBuilder.Components
             (
                 "EndContainer",
                 Color.CornflowerBlue,
-                new Dictionary<string, object>
-                {
-
-                }
+                new Dictionary<string, object>{ }
             ),
 
             // HSpacer.
@@ -55,10 +55,7 @@ namespace DocumentBuilder.Components
             (
                 "HSpacer",
                 Color.Plum,
-                new Dictionary<string, object>
-                {
-                    { "SplitIndex", 0 }
-                }
+                new Dictionary<string, object>{ }
             ),
 
             // HSpan.
@@ -78,8 +75,8 @@ namespace DocumentBuilder.Components
         /// </summary>
         public static void UpdateSyntaxHighlighting()
         {
-            foreach(var component in pageComponents)
-                KeywordManager.AddByColor(component.name, component.syntaxColor);
+            foreach(var componentTemplate in pageComponents)
+                KeywordManager.AddByColor(componentTemplate.name, componentTemplate.syntaxColor);
         }
 
         /// <summary>

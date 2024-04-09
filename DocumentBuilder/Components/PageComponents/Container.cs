@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace DocumentBuilder.Components
 {
+    /// <summary>
+    /// Describes a text container that is rendered on a page.
+    /// </summary>
     internal class Container
     {
         // Horizontal position (optional).
@@ -24,10 +23,10 @@ namespace DocumentBuilder.Components
         public List<int> lines;
 
         // Constructor for a container instance.
-        public Container(int horizontalPosition, int verticalPosition, int width, string alignment, List<int> lines)
+        public Container(int xPosition, int yPosition, int width, string alignment, List<int> lines)
         {
-            this.yPosition = verticalPosition;
-            this.xPosition = horizontalPosition;
+            this.xPosition = xPosition;
+            this.yPosition = yPosition;
             this.width = width;
             this.alignment = alignment;
             this.lines = lines;

@@ -2,11 +2,17 @@
 
 namespace DocumentBuilder.Forms
 {
+    /// <summary>
+    /// Form that documents how to use Document Builder.
+    /// </summary>
     public partial class Form_Documentation : Form
     {
-        // Force single form instance.
+        // Singleton form instance.
         private static Form_Documentation activeDocumentationForm = null;
 
+        /// <summary>
+        /// Shows new about form if none exists, or current form if one is already open.
+        /// </summary>
         public static void ShowLogViewerForm()
         {
             Debug.Logs.LogDebugMessage("Showing LogViewer form.");

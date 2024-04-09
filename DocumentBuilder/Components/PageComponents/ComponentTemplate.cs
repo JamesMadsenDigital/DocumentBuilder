@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Drawing;
 
 namespace DocumentBuilder.Components
 {
     /// <summary>
-    /// Template for a component.
+    /// Template for a page component.
     /// </summary>
     internal class ComponentTemplate
     {
-        // Name of the component
+        // Name of the component.
         public string name { get; private set; }
 
         // Color component is drawn with in editor.

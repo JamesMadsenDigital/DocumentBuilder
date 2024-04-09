@@ -3,6 +3,9 @@ using DocumentBuilder.Components;
 
 namespace DocumentBuilder.Parsing
 {
+    /// <summary>
+    /// Handles creation of container objects from raw text input.
+    /// </summary>
     internal static class ContainerBuilder
     {
         /// <summary>
@@ -42,7 +45,7 @@ namespace DocumentBuilder.Parsing
         }
 
         /// <summary>
-        /// Returns the ending index of a container. Returns -1 if no matching end tag is found.
+        /// Returns the ending vertical index of a container. Returns -1 if no matching end tag is found.
         /// </summary>
         private static int GetContainerEnd(int startIndex, string endTag, List<Line> lines)
         {
@@ -63,9 +66,6 @@ namespace DocumentBuilder.Parsing
         /// <summary>
         /// Adds indexes for all lines between the start and end index of a container.
         /// </summary>
-        /// <param name="startIndex"></param>
-        /// <param name="endIndex"></param>
-        /// <returns></returns>
         private static List<int> GetContainerLines(int startIndex, int endIndex)
         {
             List<int> lineIndexes = new List<int>();    

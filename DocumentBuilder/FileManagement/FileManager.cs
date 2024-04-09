@@ -6,12 +6,12 @@ using DocumentBuilder.Debug;
 namespace DocumentBuilder.FileManagement
 {
     /// <summary>
-    /// Manages application files and paths.
+    /// Manages file and directory operations.
     /// </summary>
     internal static class FileManager
     {
         /// <summary>
-        /// Creates and writes a file.
+        /// Attempts to create and write a file at the specified path.
         /// </summary>
         public static void CreateFile(string path, string[] lines)
         {
@@ -160,18 +160,15 @@ namespace DocumentBuilder.FileManagement
             return new string[0];
         }
 
-
         /// <summary>
         /// Opens a directory selection dialog, and returns the selected path.
         /// </summary>
         public static string SelectDirectory(string currentDirectory)
         {
-             FolderBrowserDialog selectFolderDialog = new FolderBrowserDialog();
+            FolderBrowserDialog selectFolderDialog = new FolderBrowserDialog();
 
             if(selectFolderDialog.ShowDialog() == DialogResult.OK)
-            {
                 return selectFolderDialog.SelectedPath;
-            }
 
             return currentDirectory;
         }

@@ -41,7 +41,7 @@ namespace DocumentBuilder.Parsing
         }
 
         /// <summary>
-        /// Creates a line with text and components.
+        /// Creates a line with text and/or a component.
         /// </summary>
         private static Line CreateLine(string rawLine)
         {
@@ -82,23 +82,39 @@ namespace DocumentBuilder.Parsing
                 
             // Copy values from dictionary.
             foreach(KeyValuePair<string, object> property in template.properties)
-            {
                 newComponent.SetProperty(property.Key, property.Value);
-            }
-    
+
             // Set rawtext and horizontal index of the new component.
             newComponent.rawText = potentialComponent;
 
             newComponent.index = componentMatch.Index;
 
+            // Parse raw properties into component properties.
+            ParseRawProperties(ref newComponent, potentialComponent);
+
+            newLine.SetComponent(newComponent);
+            
+            NoComponent:
+
+            // Remove valid component declarations from the raw text.
+            newLine.outputText = StripComponents(rawLine, newLine.lineComponent);
+
+            return newLine;
+        }
+
+        /// <summary>
+        /// Parses raw properties out of their component declaration.
+        /// </summary>
+        private static void ParseRawProperties(ref Component newComponent, string potentialComponent)
+        {
             // Get properties of new component (between first/only set of parentheses).
             Regex componentProperties = new Regex(@"\(.*\)");
 
             Match properties = componentProperties.Match(potentialComponent);
 
-            // Minimum length for the properties field is 5 "(X=4)".
+            // Skip processing of properties if declaration length is less than 5.
             if (properties.Value.Length < 5)
-                goto AddComponent;
+                return;
 
             // Remove parentheses from regex result.
             string trimmedProperties = properties.Value.Substring(1, properties.Value.Length - 2);
@@ -133,32 +149,18 @@ namespace DocumentBuilder.Parsing
                 if (propertyValue.Length == 0 || string.IsNullOrWhiteSpace(propertyValue))
                     continue;
 
-                // Attempt to save property as an integer first.
-                int valueAsInt = 0;
-
-                if (int.TryParse(propertyValue, out valueAsInt))
+                // Attempt to save property as integer first.
+                if (int.TryParse(propertyValue, out int valueAsInt))
                     newComponent.SetProperty(propertyName, valueAsInt);
                 else
                     newComponent.SetProperty(propertyName, propertyValue);
             }
-
-            AddComponent:
-
-            newLine.AddComponent(newComponent);
-            
-
-            NoComponent:
-
-            // Remove valid component declarations from the raw text.
-            newLine.text = RemoveComponents(rawLine, newLine.lineComponent);
-
-            return newLine;
         }
 
         /// <summary>
         /// Removes valid component declarations from a string.
         /// </summary>
-        private static string RemoveComponents(string rawLine, Component component)
+        private static string StripComponents(string rawLine, Component component)
         {
             if(component == null)
                 return rawLine;

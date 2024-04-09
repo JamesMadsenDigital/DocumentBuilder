@@ -1,20 +1,12 @@
-﻿using DocumentBuilder.Debug;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DocumentBuilder.Components
+﻿namespace DocumentBuilder.Components
 {
     /// <summary>
-    /// Represents a line from the document that contains components and/or text.
+    /// Describes a line from the document that contains components and/or text.
     /// </summary>
     internal class Line
     {
         // Text that is contained on the line.
-        public string text = "";
+        public string outputText = "";
 
         // Components attached to line.
         public Component lineComponent;
@@ -34,12 +26,9 @@ namespace DocumentBuilder.Components
         }
 
         /// <summary>
-        /// Ad
+        /// Sets component that is attached to line.
         /// </summary>
-        /// <param name="component"></param>
-        public void AddComponent(Component component)
-        {
-            lineComponent = component;
-        }
+        public void SetComponent(Component component)
+        => lineComponent = component;
     }
 }

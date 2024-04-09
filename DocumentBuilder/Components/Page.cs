@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace DocumentBuilder.Components
 {
+    /// <summary>
+    /// Describes one page of a document with lines and containers.
+    /// </summary>
     internal class Page
     {
         // Width and height of the page.
@@ -37,7 +36,7 @@ namespace DocumentBuilder.Components
         }
 
         /// <summary>
-        /// Generatees the page's character array and populates it with spaces.
+        /// Generates the page's character array and populates it with spaces.
         /// </summary>
         private void GenerateCharArray()
         {

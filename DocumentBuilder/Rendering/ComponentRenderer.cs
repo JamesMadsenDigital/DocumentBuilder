@@ -1,9 +1,11 @@
-﻿using System.Text.RegularExpressions;
-using DocumentBuilder.Debug;
+﻿using DocumentBuilder.Debug;
 using DocumentBuilder.Components;
 
 namespace DocumentBuilder.Rendering
 {
+    /// <summary>
+    /// Handles rendering of components to viewer output.
+    /// </summary>
     internal static class ComponentRenderer
     {
         /// <summary>
@@ -30,7 +32,7 @@ namespace DocumentBuilder.Rendering
         private static void DrawLine(Page page, Line line, int yPosition, int xPosition, int width)
         {
             // Remove whitespace from start and end of line.
-            string lineText = line.text.Trim();
+            string lineText = line.outputText.Trim();
 
             // Draw an HSpan if one exists.
             if(line.GetComponent("HSpan") != null)
@@ -45,7 +47,7 @@ namespace DocumentBuilder.Rendering
                 return;
             }
 
-            // If line has an HSpacer
+            // If line has an HSpacer.
             if (line.GetComponent("HSpacer") != null)
             {
                 Component hSpacer = line.GetComponent("HSpacer");
@@ -68,18 +70,6 @@ namespace DocumentBuilder.Rendering
             NoComponents:
 
             DrawText(page, lineText, yPosition, xPosition);
-        }
-
-        /// <summary>
-        /// Counts the number of leading whitespaces in a string.
-        /// </summary>
-        private static int GetWhiteSpaceCount(string input)
-        {
-            Regex leadingWhiteSpaces = new Regex("^\\s*");
-
-            Match whiteSpaces = leadingWhiteSpaces.Match(input);
-
-            return whiteSpaces.Value.Length;
         }
 
         /// <summary>

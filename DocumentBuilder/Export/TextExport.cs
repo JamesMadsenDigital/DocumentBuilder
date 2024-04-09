@@ -10,6 +10,9 @@ using DocumentBuilder.Output;
 
 namespace DocumentBuilder.Export
 {
+    /// <summary>
+    /// Handles exporting of plaintext(.txt) files.
+    /// </summary>
     internal static class TextExport
     {
         /// <summary>
@@ -50,7 +53,7 @@ namespace DocumentBuilder.Export
                 return;
             }
 
-            // Create each page
+            // Create each page.
             foreach(int pageIndex in pages)
             {
                 string[] pageLines = DocumentOutput.GetPage(document.pages[pageIndex]); 

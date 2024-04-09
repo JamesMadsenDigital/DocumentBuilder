@@ -10,6 +10,9 @@ using DocumentBuilder.FileManagement;
 
 namespace DocumentBuilder.Forms
 {
+    /// <summary>
+    /// Form for configuring document export options.
+    /// </summary>
     internal partial class Form_Export : Form
     {
         // Document that is going to be exported.
@@ -51,18 +54,13 @@ namespace DocumentBuilder.Forms
         /// <summary>
         /// Shows a new form instance or focuses the active instance.
         /// </summary>
-        /// <param name="document"></param>
         public static void ShowExportForm(Document document)
         {
             // If there is no form active.
             if (activeExportForm == null)
             {
                 activeExportForm = new Form_Export(document);
-                activeExportForm.FormClosed += delegate 
-                { 
-                    activeExportForm = null;
-                    Logs.LogUserMessage("Cancelling export process.");
-                };
+                activeExportForm.FormClosed += delegate { activeExportForm = null; };
 
                 activeExportForm.ShowDialog();
 
@@ -83,17 +81,9 @@ namespace DocumentBuilder.Forms
 
             if (!documentExists)
                 Logs.LogErrorMessage("Export: Document is null.");
-            else
-                Logs.LogUserMessage("Beginning export process.");
-                          
-            // Disable most components if document is null.
-            Text_DocumentName.Enabled = documentExists;
-            Text_ExportLocation.Enabled = documentExists;
-            Button_SelectExportDirectory.Enabled = documentExists;
-            Check_CreateDirectory.Enabled = documentExists;
-            Check_OpenAfterExport.Enabled = documentExists;
-            Check_Overwrite.Enabled = documentExists;
-            List_ExportAs.Enabled = documentExists;
+
+            // Enable or disable form components.
+            SetComponentsActive(documentExists);
 
             // Check other export settings.
             bool validOutputDirectory = ValidateOutputDirectory();
@@ -118,6 +108,21 @@ namespace DocumentBuilder.Forms
             Text_ExportLocation.BackColor = directoryExists ? Color.White : Color.LightCoral;
 
             return directoryExists;
+        }
+
+        /// <summary>
+        /// Activates or deactivates relevant components based on if a document exists.
+        /// </summary>
+        private void SetComponentsActive(bool documentExists)
+        {
+            // Disable most components if document is null.
+            Text_DocumentName.Enabled = documentExists;
+            Text_ExportLocation.Enabled = documentExists;
+            Button_SelectExportDirectory.Enabled = documentExists;
+            Check_CreateDirectory.Enabled = documentExists;
+            Check_OpenAfterExport.Enabled = documentExists;
+            Check_Overwrite.Enabled = documentExists;
+            List_ExportAs.Enabled = documentExists;
         }
 
         /// <summary>

@@ -3,6 +3,9 @@ using DocumentBuilder.Output;
 
 namespace DocumentBuilder.Rendering
 {
+    /// <summary>
+    /// Handles rendering of active document to the viewer window.
+    /// </summary>
     internal static class ViewRenderer
     {
         /// <summary>
@@ -19,6 +22,7 @@ namespace DocumentBuilder.Rendering
 
             for (int i = 0; i < output.Length; i++)
             {
+                // If we are at the top or bottom of a page.
                 if (i == 0 || i == output.Length - 1)
                     output[i] = DrawSpan(page);
                 else if (i < rawPageLines.Length)
@@ -35,7 +39,10 @@ namespace DocumentBuilder.Rendering
         {
             string span = "    ";
 
-            for (int i = 0; i < page.width; i++)
+            // Spans will be two characters wider than the page they contain.
+            int spanWidth = page.width + 2;
+
+            for (int i = 0; i < spanWidth; i++)
                 span += '*';
 
             return span + "**";

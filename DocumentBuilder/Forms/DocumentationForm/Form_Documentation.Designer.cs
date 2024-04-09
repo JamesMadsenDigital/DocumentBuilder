@@ -131,8 +131,8 @@
             // 
             // Panel_Documentation
             // 
-            this.Panel_Documentation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.Panel_Documentation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Panel_Documentation.AutoScroll = true;
             this.Panel_Documentation.BackColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -333,7 +333,7 @@
             // 
             this.label45.AutoSize = true;
             this.label45.Font = new System.Drawing.Font("Cascadia Mono", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(15, 593);
+            this.label45.Location = new System.Drawing.Point(15, 601);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(104, 17);
             this.label45.TabIndex = 45;
@@ -455,7 +455,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(15, 575);
+            this.label19.Location = new System.Drawing.Point(15, 583);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(75, 18);
             this.label19.TabIndex = 18;

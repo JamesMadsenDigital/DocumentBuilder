@@ -170,7 +170,6 @@
   <ItemGroup>
     <Content Include="Features.txt" />
     <Content Include="Icon.ico" />
-    <Content Include="KnownBugs.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -192,8 +191,6 @@
       <DefaultIcon>Icon.ico</DefaultIcon>
     </FileAssociation>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UserControls\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

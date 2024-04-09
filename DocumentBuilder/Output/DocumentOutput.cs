@@ -4,7 +4,7 @@ using DocumentBuilder.Rendering;
 namespace DocumentBuilder.Output
 {
     /// <summary>
-    /// Handles conversion of page objects to usable outputs.
+    /// Handles conversion of page objects to string outputs.
     /// </summary>
     internal static class DocumentOutput
     {

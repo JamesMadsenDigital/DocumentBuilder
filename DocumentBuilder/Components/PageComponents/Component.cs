@@ -57,15 +57,6 @@ namespace DocumentBuilder.Components
         }
 
         /// <summary>
-        /// Returns the hash code of the properties list.
-        /// </summary>
-        /// <returns></returns>
-        public string GetPropertiesHash()
-        {
-            return properties.GetHashCode().ToString();
-        }
-
-        /// <summary>
         /// Sets a property key if it exists, and creates a new one if it doesn't.
         /// </summary>
         public void SetProperty(string propertyName, object value)

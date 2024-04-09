@@ -6,12 +6,11 @@ using DocumentBuilder.Components;
 using DocumentBuilder.Parsing;
 using DocumentBuilder.Rendering;
 using DocumentBuilder.Editing;
-using System.Threading;
 
 namespace DocumentBuilder.Forms
 {
     /// <summary>
-    /// The main form of Document Builder
+    /// The editor / viewer form.
     /// </summary>
     public partial class Form_Main : Form
     {
@@ -58,7 +57,7 @@ namespace DocumentBuilder.Forms
         /// </summary>
         private void Editor_TextChanged(object sender, EventArgs e)
         {
-            this.SuspendLayout();
+            SuspendLayout();
 
             int currentFirstChar = RichText_Editor.GetFirstCharIndexOfCurrentLine();
 
@@ -66,7 +65,7 @@ namespace DocumentBuilder.Forms
 
             SyntaxHighlighting.Update(RichText_Editor, currentLine);
 
-            this.ResumeLayout();
+            ResumeLayout();
 
             // Update document output.
             currentDocument = DocumentParser.ParseDocument(RichText_Editor.Lines);

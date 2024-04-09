@@ -1,27 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using DocumentBuilder.Debug;
 
 namespace DocumentBuilder.Forms
 {
     /// <summary>
-    /// 
+    /// Form that shows user, debug, and error logs.
     /// </summary>
     public partial class Form_LogViewer : Form
     {
-        // Force single form instance.
+        // Singleton form instance.
         private static Form_LogViewer activeLogViewerForm = null;
 
+        /// <summary>
+        /// Shows new about form if none exists, or current form if one is already open.
+        /// </summary>
         public static void ShowLogViewerForm()
         {
-            Debug.Logs.LogDebugMessage("Showing LogViewer form.");
+            Logs.LogDebugMessage("Showing LogViewer form.");
+
             // If there is no form active.
             if (activeLogViewerForm == null)
             {

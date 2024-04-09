@@ -1,13 +1,4 @@
-﻿using DocumentBuilder.Debug;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace DocumentBuilder.Forms
 {
@@ -16,9 +7,12 @@ namespace DocumentBuilder.Forms
     /// </summary>
     public partial class Form_About : Form
     {
-        // Force single form instance.
+        // Singleton form instance.
         private static Form_About activeAboutForm = null;
 
+        /// <summary>
+        /// Shows new about form if none exists, or current form if one is already open.
+        /// </summary>
         public static void ShowAboutForm()
         {
             Debug.Logs.LogDebugMessage("Showing About form.");
