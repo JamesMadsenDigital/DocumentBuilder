@@ -1,7 +1,0 @@
--Automatically open last opened file on start.
--Save font size preferences
--Fix syntax highlighting so editor can have font size adjusted.
--Separate rendering and export pipeline from forms for use from the console.
--Open with / open from file explorer.
--Save before creating new dialog.
--Direct export to docx/pdf

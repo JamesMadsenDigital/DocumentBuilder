@@ -26,7 +26,7 @@ namespace DocumentBuilder.Components
         /// </summary>
         public Page(int width, int height)
         {
-            // Minimum height and width are 5.
+            // Minimum height and width are 10.
             if (width < 10) width = 10;
             if (height < 10) height = 10;
 
@@ -37,7 +37,7 @@ namespace DocumentBuilder.Components
         }
 
         /// <summary>
-        /// Generatees the page's character array and populates it with spaces.
+        /// Generates the page's character array and populates it with spaces.
         /// </summary>
         private void GenerateCharArray()
         {

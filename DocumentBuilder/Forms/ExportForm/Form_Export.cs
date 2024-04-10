@@ -10,6 +10,9 @@ using DocumentBuilder.FileManagement;
 
 namespace DocumentBuilder.Forms
 {
+    /// <summary>
+    /// Form for exporting documents to text files.
+    /// </summary>
     internal partial class Form_Export : Form
     {
         // Document that is going to be exported.

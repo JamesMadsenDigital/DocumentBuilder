@@ -2,6 +2,9 @@
 
 namespace DocumentBuilder.Forms
 {
+    /// <summary>
+    /// Form containing documentation and guidelines for Document Builder.
+    /// </summary>
     public partial class Form_Documentation : Form
     {
         // Force single form instance.

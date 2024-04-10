@@ -45,7 +45,7 @@ namespace DocumentBuilder.Rendering
                 return;
             }
 
-            // If line has an HSpacer
+            // If line has an HSpacer.
             if (line.GetComponent("HSpacer") != null)
             {
                 Component hSpacer = line.GetComponent("HSpacer");
@@ -68,18 +68,6 @@ namespace DocumentBuilder.Rendering
             NoComponents:
 
             DrawText(page, lineText, yPosition, xPosition);
-        }
-
-        /// <summary>
-        /// Counts the number of leading whitespaces in a string.
-        /// </summary>
-        private static int GetWhiteSpaceCount(string input)
-        {
-            Regex leadingWhiteSpaces = new Regex("^\\s*");
-
-            Match whiteSpaces = leadingWhiteSpaces.Match(input);
-
-            return whiteSpaces.Value.Length;
         }
 
         /// <summary>

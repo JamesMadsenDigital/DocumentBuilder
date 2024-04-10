@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using System.Drawing;
 using System.Text.RegularExpressions;
 using DocumentBuilder.Parsing;
@@ -13,9 +12,6 @@ namespace DocumentBuilder.Editing
         /// </summary>
         public static void Update(RichTextBox textBox, int lineIndex)
         {
-
-
-
             // Get current line.
             textBox.WordWrap = false;
             int cursorPosition = textBox.SelectionStart;
@@ -100,9 +96,6 @@ namespace DocumentBuilder.Editing
             textBox.Select(cursorPosition, 0);
             textBox.SelectionColor = Color.Black;
         }
-
-
-
 
         /// <summary>
         /// Changes the color of an entire line in the text box.

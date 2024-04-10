@@ -63,9 +63,6 @@ namespace DocumentBuilder.Parsing
         /// <summary>
         /// Adds indexes for all lines between the start and end index of a container.
         /// </summary>
-        /// <param name="startIndex"></param>
-        /// <param name="endIndex"></param>
-        /// <returns></returns>
         private static List<int> GetContainerLines(int startIndex, int endIndex)
         {
             List<int> lineIndexes = new List<int>();    

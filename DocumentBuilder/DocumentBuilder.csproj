@@ -168,9 +168,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Features.txt" />
     <Content Include="Icon.ico" />
-    <Content Include="KnownBugs.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

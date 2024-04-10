@@ -21,7 +21,7 @@ namespace DocumentBuilder.Rendering
             {
                 if (i == 0 || i == output.Length - 1)
                     output[i] = DrawSpan(page);
-                else if (i < rawPageLines.Length)
+                else if (i < output.Length - 1)
                     output[i] = $"{(i - 1).ToString("000")} *{rawPageLines[i]}*";
             }
 

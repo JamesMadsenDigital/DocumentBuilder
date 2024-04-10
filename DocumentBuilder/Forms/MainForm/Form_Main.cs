@@ -6,12 +6,11 @@ using DocumentBuilder.Components;
 using DocumentBuilder.Parsing;
 using DocumentBuilder.Rendering;
 using DocumentBuilder.Editing;
-using System.Threading;
 
 namespace DocumentBuilder.Forms
 {
     /// <summary>
-    /// The main form of Document Builder
+    /// The main form of Document Builder.
     /// </summary>
     public partial class Form_Main : Form
     {
@@ -34,7 +33,7 @@ namespace DocumentBuilder.Forms
         /// </summary>
         private void Editor_TextChanged(object sender, EventArgs e)
         {
-            this.SuspendLayout();
+            SuspendLayout();
 
             int currentFirstChar = RichText_Editor.GetFirstCharIndexOfCurrentLine();
 
@@ -42,7 +41,7 @@ namespace DocumentBuilder.Forms
 
             SyntaxHighlighting.Update(RichText_Editor, currentLine);
 
-            this.ResumeLayout();
+            ResumeLayout();
 
             // Update document output.
             currentDocument = DocumentParser.ParseDocument(RichText_Editor.Lines);
@@ -56,7 +55,6 @@ namespace DocumentBuilder.Forms
         private void Number_Page_ValueChanged(object sender, EventArgs e)
         => Text_Viewer.Lines = ViewRenderer.RenderViewerOutput(currentDocument.GetPage((int)Number_Page.Value - 1));
         
-
         /// <summary>
         /// Opens a new DML or Text File.
         /// </summary>
